@@ -1,0 +1,75 @@
+<!--single product form-->
+<form [formGroup]="singleProductForm" (ngSubmit)="onSubmit()">
+
+  <!--Card-->
+  <mat-card>
+
+    <!--Card: content-->
+    <mat-card-content>
+
+      <!--Grid List-->
+      <mat-grid-list cols="6">
+        <!--Form Prefix: SL.NO -->
+        <span matPrefix>{{slNo}}. </span>
+
+        <!--Form Field: Description-->
+        <mat-form-field>
+          <input matInput placeholder="Description" formControlName="description" [(ngModel)]="product.description">
+          <mat-error *ngIf="singleProductForm.controls['description'].hasError('required')">
+            Description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Form Field: HSN-->
+        <mat-form-field>
+          <input matInput placeholder="HSN" formControlName="hsn" [(ngModel)]="product.hsn">
+          <mat-error *ngIf="singleProductForm.controls['hsn'].hasError('required')">
+            HSN is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Form Field: Quantity-->
+        <mat-form-field>
+          <input matInput placeholder="Quantity" type="number" formControlName="quantity"
+            [(ngModel)]="product.quantity">
+          <mat-error *ngIf="singleProductForm.controls['quantity'].hasError('required')">
+            Quantity is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Form Field: GST Percentage-->
+        <mat-form-field>
+          <mat-select placeholder="GST Percentage" formControlName="gstPercentage" [(ngModel)]="product.gstPercentage">
+            <mat-option *ngFor="let gstPercentage of gstPercentages" [value]="gstPercentage">
+              {{ gstPercentage }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="singleProductForm.controls['gstPercentage'].hasError('required')">
+            GST Percentage is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!--Form Field: Rate-->
+        <mat-form-field>
+          <input matInput placeholder="Rate" type="number" min="0" formControlName="rate" [(ngModel)]="product.rate">
+          <mat-error *ngIf="singleProductForm.controls['rate'].hasError('required')">
+            Rate is <strong>required</strong>
+          </mat-error>
+          <span matSuffix>$&nbsp;</span>
+        </mat-form-field>
+
+        <!--Form Field: Discount-->
+        <mat-form-field>
+          <input matInput placeholder="Discount" type="number" min="0" max="100" formControlName="discount"
+            [(ngModel)]="product.discount">
+          <span matSuffix>%&nbsp;</span>
+        </mat-form-field>
+
+        <!--Button: Submit-->
+        <button mat-raised-button color="secondary" type="submit">
+          calculate
+        </button>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</form>
