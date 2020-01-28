@@ -1,17 +1,25 @@
 <!--new bill div-->
-<div>
+<div class="container">
 
   <!-- #region top layout -->
-  <div>
-    <div class="row">
-      <!-- #region customer name and total amount -->
-      <div class="column">
+  <mat-grid-list cols="2" rowHeight="75">
+    <!-- #region customer name and total amount -->
+    <mat-grid-tile>
+      <div>
         <p>Customer Name : <strong>{{customerName}}</strong></p>
         <p>Total Amount : <strong>{{totalAmount}}</strong></p>
       </div>
-      <!-- #endregion -->
-    </div>
-  </div>
+    </mat-grid-tile>
+    <!-- #endregion -->
+
+    <mat-grid-tile>
+      <mat-form-field>
+        <input matInput [matDatepicker]="manualDatePicker" placeholder="Manual Date">
+        <mat-datepicker-toggle matSuffix [for]="manualDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #manualDatePicker></mat-datepicker>
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
   <!-- #endregion -->
 
   <!-- #region product list -->
