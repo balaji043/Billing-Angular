@@ -1,3 +1,32 @@
-<div class="row" *ngFor="let product of products">
-  <app-single-product [product]="product"></app-single-product>
+<!--new bill div-->
+<div>
+
+  <!-- #region top layout -->
+  <div>
+    <div class="row">
+      <!-- #region customer name and total amount -->
+      <div class="column">
+        <p>Customer Name : <strong>{{customerName}}</strong></p>
+        <p>Total Amount : <strong>{{totalAmount}}</strong></p>
+      </div>
+      <!-- #endregion -->
+    </div>
+  </div>
+  <!-- #endregion -->
+
+  <!-- #region product list -->
+  <div *ngFor="let product of products;let i=index;">
+    <app-single-product [product]="product" [slNo]="i+1">
+    </app-single-product>
+  </div>
+  <!-- #endregion -->
+
+  <!-- #region add and delete buttons -->
+  <button mat-mini-fab matTooltip="Add Product" (click)="onClickOfAddProductButton();">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-mini-fab matTooltip="Delete selected product(s)" (click)="onClickOfOverallDeleteButton();">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <!-- #endregion -->
 </div>

@@ -9,16 +9,31 @@ import { Product } from '../model/product.model';
 export class NewBillComponent implements OnInit {
 
   products: Product[];
+  customerName: string;
+  totalAmount: number;
 
   constructor() {
     this.products = [];
-    this.products.push(this.getNewInitializeProduct());
+    this.customerName = 'Tony Stark';
+    this.totalAmount = 0;
+    this.onClickOfAddProductButton();
   }
 
   ngOnInit() {
   }
 
-  private getNewInitializeProduct(): Product{
+  public onClickOfAddProductButton() {
+    this.products.push(this.getNewInitializedProduct());
+  }
+
+  public onClickOfOverallDeleteButton() {
+  }
+
+  public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
+    this.products = this.products.filter(product => product !== productToBeDeleted);
+  }
+
+  private getNewInitializedProduct(): Product {
     const product = new Product();
     product.description = '';
     product.discount = 0;
@@ -28,4 +43,7 @@ export class NewBillComponent implements OnInit {
     product.rate = 0;
     return product;
   }
+
+
+
 }

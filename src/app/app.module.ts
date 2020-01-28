@@ -8,7 +8,9 @@ import {
   MatNativeDateModule, MatSnackBarModule, MatIconModule, MatDialogModule, MatButtonModule,
   MatTableModule, MatPaginatorModule, MatSortModule, MatTabsModule,
   MatCheckboxModule, MatToolbarModule, MatCardModule,
-  MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatMenuModule, MatGridListModule
+  MatFormFieldModule, MatProgressSpinnerModule, MatInputModule, MatMenuModule, MatGridListModule,
+  MatAutocompleteModule,
+  MatTooltipModule
 } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
@@ -61,7 +63,9 @@ import { NewBillComponent } from './new-bill/new-bill.component';
     MatListModule,
     MatMenuModule,
     ReactiveFormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,43 +1,52 @@
-<!--single product form-->
+<!-- #region Form : single product -->
 <form [formGroup]="singleProductForm" (ngSubmit)="onSubmit()">
-
-  <!--Card-->
+  <!-- #region Card -->
   <mat-card>
-
-    <!--Card: content-->
+    <!-- #region Card: content -->
     <mat-card-content>
-
-      <!--Grid List-->
+      <!-- #region Grid List: Form fields -->
       <mat-grid-list cols="6">
-        <!--Form Prefix: SL.NO -->
+        <!-- #region Form Prefix: SL.NO  -->
         <span matPrefix>{{slNo}}. </span>
+        <!-- #endregion -->
 
-        <!--Form Field: Description-->
+        <!-- #region Form Field: Description -->
         <mat-form-field>
-          <input matInput placeholder="Description" formControlName="description" [(ngModel)]="product.description">
+          <input matInput placeholder="Description" formControlName="description"
+            [matAutocomplete]="autoCompleteForDescription">
           <mat-error *ngIf="singleProductForm.controls['description'].hasError('required')">
             Description is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <!-- #region Form Field: AutoComplete Options -->
+        <mat-autocomplete #autoCompleteForDescription="matAutocomplete">
+          <mat-option *ngFor="let description of descriptions" [value]="description">
+            {{ description }}
+          </mat-option>
+        </mat-autocomplete>
+        <!-- #endregion -->
+        <!-- #endregion -->
 
-        <!--Form Field: HSN-->
+        <!-- #region Form Field: HSN -->
         <mat-form-field>
           <input matInput placeholder="HSN" formControlName="hsn" [(ngModel)]="product.hsn">
           <mat-error *ngIf="singleProductForm.controls['hsn'].hasError('required')">
             HSN is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <!-- #endregion -->
 
-        <!--Form Field: Quantity-->
+        <!-- #region Form Field: Quantity -->
         <mat-form-field>
-          <input matInput placeholder="Quantity" type="number" formControlName="quantity"
+          <input matInput placeholder="Quantity" type="number" min="0" formControlName="quantity"
             [(ngModel)]="product.quantity">
           <mat-error *ngIf="singleProductForm.controls['quantity'].hasError('required')">
             Quantity is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <!-- #endregion -->
 
-        <!--Form Field: GST Percentage-->
+        <!-- #region Form Field: GST Percentage -->
         <mat-form-field>
           <mat-select placeholder="GST Percentage" formControlName="gstPercentage" [(ngModel)]="product.gstPercentage">
             <mat-option *ngFor="let gstPercentage of gstPercentages" [value]="gstPercentage">
@@ -48,8 +57,9 @@
             GST Percentage is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <!-- #endregion -->
 
-        <!--Form Field: Rate-->
+        <!-- #region Form Field: Rate -->
         <mat-form-field>
           <input matInput placeholder="Rate" type="number" min="0" formControlName="rate" [(ngModel)]="product.rate">
           <mat-error *ngIf="singleProductForm.controls['rate'].hasError('required')">
@@ -57,19 +67,31 @@
           </mat-error>
           <span matSuffix>$&nbsp;</span>
         </mat-form-field>
+        <!-- #endregion -->
 
-        <!--Form Field: Discount-->
+        <!-- #region Form Field: Discount -->
         <mat-form-field>
           <input matInput placeholder="Discount" type="number" min="0" max="100" formControlName="discount"
             [(ngModel)]="product.discount">
           <span matSuffix>%&nbsp;</span>
         </mat-form-field>
+        <!-- #endregion -->
 
-        <!--Button: Submit-->
-        <button mat-raised-button color="secondary" type="submit">
-          calculate
+        <!-- #region Button: delete -->
+        <button class="m-5" mat-icon-button type="button">
+          <mat-icon>delete</mat-icon>
         </button>
+        <!-- #endregion -->
+
+        <!-- #region Form Field: CheckBox -->
+        <mat-checkbox formControlName="checkBox">
+        </mat-checkbox>
+        <!-- #endregion -->
       </mat-grid-list>
+      <!-- #endregion -->
     </mat-card-content>
+    <!-- #endregion -->
   </mat-card>
+  <!-- #endregion -->
 </form>
+<!-- #endregion -->
