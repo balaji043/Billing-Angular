@@ -19,12 +19,21 @@
         <mat-datepicker #manualDatePicker></mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>
+
+    <mat-grid-tile>
+      <button matTooltip="Add Product" (click)="onSubmit();">
+        Submit
+      </button>
+    </mat-grid-tile>
+
   </mat-grid-list>
+
+
   <!-- #endregion -->
 
   <!-- #region product list -->
   <div *ngFor="let product of products;let i=index;">
-    <app-single-product [product]="product" [slNo]="i+1">
+    <app-single-product [(product)]="product" [slNo]="i+1">
     </app-single-product>
   </div>
   <!-- #endregion -->

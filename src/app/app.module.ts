@@ -21,10 +21,10 @@ import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { SingleProductComponent } from './single-product/single-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ViewBillComponent } from './view-bill/view-bill.component';
-import { NewBillComponent } from './new-bill/new-bill.component';
+import { SingleProductComponent } from './core/single-product/single-product.component';
+import { NewBillComponent } from './componets/new-bill/new-bill.component';
+import { ViewBillComponent } from './componets/view-bill/view-bill.component';
 
 @NgModule({
   declarations: [

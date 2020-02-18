@@ -44,6 +44,9 @@ export class NewBillComponent implements OnInit {
     return product;
   }
 
+  private onSubmit(): void {
+    console.log(this.products);
+  }
 
 
 }

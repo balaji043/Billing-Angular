@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ViewBillComponent } from './view-bill/view-bill.component';
-import { NewBillComponent } from './new-bill/new-bill.component';
+import { NewBillComponent } from './componets/new-bill/new-bill.component';
+import { ViewBillComponent } from './componets/view-bill/view-bill.component';
 
 
 const routes: Routes = [

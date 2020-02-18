@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Product } from '../model/product.model';
+import { Product } from 'src/app/model/product.model';
 
 @Component({
   selector: 'app-single-product',

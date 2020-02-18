@@ -12,7 +12,7 @@
 
         <!-- #region Form Field: Description -->
         <mat-form-field>
-          <input matInput placeholder="Description" formControlName="description"
+          <input matInput placeholder="Description" formControlName="description" [(ngModel)]="product.description"
             [matAutocomplete]="autoCompleteForDescription">
           <mat-error *ngIf="singleProductForm.controls['description'].hasError('required')">
             Description is <strong>required</strong>
@@ -29,7 +29,7 @@
 
         <!-- #region Form Field: HSN -->
         <mat-form-field>
-          <input matInput placeholder="HSN" formControlName="hsn" [(ngModel)]="product.hsn">
+          <input matInput placeholder="HSN" formControlName="hsn" [(ngModel)]="product.hsn" [(ngModel)]="product.hsn">
           <mat-error *ngIf="singleProductForm.controls['hsn'].hasError('required')">
             HSN is <strong>required</strong>
           </mat-error>
