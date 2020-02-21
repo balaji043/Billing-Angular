@@ -35,6 +35,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { SingleProductComponent } from './core/single-product/single-product.component';
@@ -80,7 +81,8 @@ import { ViewBillComponent } from './componets/view-bill/view-bill.component';
     ReactiveFormsModule,
     MatGridListModule,
     MatAutocompleteModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

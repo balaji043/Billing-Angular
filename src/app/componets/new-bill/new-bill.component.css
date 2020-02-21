@@ -20,3 +20,12 @@
 .new-bill {
   text-align: center;
 }
+.scroll-viewport {
+  display: inline-block;
+  height: 400px;
+  width: 1400px;
+}
+
+.example-item {
+  height: 50px;
+}

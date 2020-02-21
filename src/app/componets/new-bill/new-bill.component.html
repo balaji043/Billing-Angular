@@ -27,35 +27,40 @@
   <!-- #endregion -->
 
   <!-- #region middle layout -->
-  <div class="main-container">
+  <mat-card class="main-container">
 
     <!-- #region add and delete buttons -->
-    <div class="action-buttons">
+    <mat-card-actions class="action-buttons">
       <button mat-icon-button matTooltip="Add Product" (click)="onClickOfAddProductButton();">
         <mat-icon>add</mat-icon>
       </button>
       <button mat-icon-button matTooltip="Delete Selected Product(s)" (click)="onClickOfOverallDeleteButton();">
         <mat-icon>delete</mat-icon>
       </button>
-    </div>
+    </mat-card-actions>
     <!-- #endregion -->
 
     <!-- #region product list -->
-    <div class="product-list">
-      <app-single-product *ngFor="let product of products;let i=index;" [(product)]="product" [slNo]="i+1">
-      </app-single-product>
-    </div>
+    <mat-card-content>
+      <cdk-virtual-scroll-viewport class="scroll-viewport" itemSize="50px">
+        <app-single-product class="product-list" *ngFor="let product of products;let i=index;" [(product)]="product"
+          [slNo]="i+1">
+        </app-single-product>
+      </cdk-virtual-scroll-viewport>
+    </mat-card-content>
     <!-- #endregion -->
 
     <!-- #region Submit Button -->
-    <div class="submit-button">
-      <button matTooltip="Submit Bill" (click)="onSubmit();">
-        Submit
-      </button>
-    </div>
+    <mat-card-actions>
+      <div class="submit-button">
+        <button matTooltip="Submit Bill" (click)="onSubmit();">
+          Submit
+        </button>
+      </div>
+    </mat-card-actions>
     <!-- #endregion -->
 
-  </div>
+  </mat-card>
   <!-- #endregion -->
 
 </div>
