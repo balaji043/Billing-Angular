@@ -1,8 +1,9 @@
-<!--new bill div-->
-<div class="container">
+<!-- #region new bill div-->
+<div class="new-bill">
 
   <!-- #region top layout -->
   <mat-grid-list cols="2" rowHeight="75">
+
     <!-- #region customer name and total amount -->
     <mat-grid-tile>
       <div>
@@ -12,6 +13,7 @@
     </mat-grid-tile>
     <!-- #endregion -->
 
+    <!-- #region date picker -->
     <mat-grid-tile>
       <mat-form-field>
         <input matInput [matDatepicker]="manualDatePicker" placeholder="Manual Date">
@@ -19,31 +21,42 @@
         <mat-datepicker #manualDatePicker></mat-datepicker>
       </mat-form-field>
     </mat-grid-tile>
-
-    <mat-grid-tile>
-      <button matTooltip="Add Product" (click)="onSubmit();">
-        Submit
-      </button>
-    </mat-grid-tile>
+    <!-- #endregion -->
 
   </mat-grid-list>
-
-
   <!-- #endregion -->
 
-  <!-- #region product list -->
-  <div *ngFor="let product of products;let i=index;">
-    <app-single-product [(product)]="product" [slNo]="i+1">
-    </app-single-product>
+  <!-- #region middle layout -->
+  <div class="main-container">
+
+    <!-- #region add and delete buttons -->
+    <div class="action-buttons">
+      <button mat-icon-button matTooltip="Add Product" (click)="onClickOfAddProductButton();">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Delete Selected Product(s)" (click)="onClickOfOverallDeleteButton();">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region product list -->
+    <div class="product-list">
+      <app-single-product *ngFor="let product of products;let i=index;" [(product)]="product" [slNo]="i+1">
+      </app-single-product>
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region Submit Button -->
+    <div class="submit-button">
+      <button matTooltip="Submit Bill" (click)="onSubmit();">
+        Submit
+      </button>
+    </div>
+    <!-- #endregion -->
+
   </div>
   <!-- #endregion -->
 
-  <!-- #region add and delete buttons -->
-  <button mat-mini-fab matTooltip="Add Product" (click)="onClickOfAddProductButton();">
-    <mat-icon>add</mat-icon>
-  </button>
-  <button mat-mini-fab matTooltip="Delete selected product(s)" (click)="onClickOfOverallDeleteButton();">
-    <mat-icon>delete</mat-icon>
-  </button>
-  <!-- #endregion -->
 </div>
+<!-- #endregion -->

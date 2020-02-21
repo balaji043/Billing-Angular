@@ -1,0 +1,22 @@
+.main-container {
+  display: inline-block;
+  text-align: center;
+}
+
+.action-buttons {
+  text-align: right;
+}
+
+.product-list {
+  display: inline-block;
+  margin: 4px;
+  padding: 4px;
+}
+
+.submit-button {
+  text-align: right;
+}
+
+.new-bill {
+  text-align: center;
+}

@@ -7,7 +7,6 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./new-bill.component.css']
 })
 export class NewBillComponent implements OnInit {
-
   products: Product[];
   customerName: string;
   totalAmount: number;
@@ -19,18 +18,18 @@ export class NewBillComponent implements OnInit {
     this.onClickOfAddProductButton();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public onClickOfAddProductButton() {
     this.products.push(this.getNewInitializedProduct());
   }
 
-  public onClickOfOverallDeleteButton() {
-  }
+  public onClickOfOverallDeleteButton() { }
 
   public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
-    this.products = this.products.filter(product => product !== productToBeDeleted);
+    this.products = this.products.filter(
+      product => product !== productToBeDeleted
+    );
   }
 
   private getNewInitializedProduct(): Product {
@@ -41,12 +40,11 @@ export class NewBillComponent implements OnInit {
     product.hsn = '';
     product.quantity = 0;
     product.rate = 0;
+    product.isSelected = false;
     return product;
   }
 
   private onSubmit(): void {
     console.log(this.products);
   }
-
-
 }

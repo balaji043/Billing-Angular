@@ -5,4 +5,5 @@ export class Product {
     rate: number;
     gstPercentage: number;
     discount: number;
+    isSelected: boolean;
 }
