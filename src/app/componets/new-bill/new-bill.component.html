@@ -43,8 +43,8 @@
     <!-- #region product list -->
     <mat-card-content>
       <cdk-virtual-scroll-viewport class="scroll-viewport" itemSize="50px">
-        <app-single-product class="product-list" *ngFor="let product of products;let i=index;" [(product)]="product"
-          [slNo]="i+1">
+        <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);"
+          *ngFor="let product of products;let i=index;" [(product)]="product" [slNo]="i+1">
         </app-single-product>
       </cdk-virtual-scroll-viewport>
     </mat-card-content>

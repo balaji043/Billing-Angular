@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Product } from 'src/app/model/product.model';
 
@@ -12,6 +12,7 @@ export class SingleProductComponent {
   /* #region  component inputs */
   @Input() product: Product;
   @Input() slNo: number;
+  @Output() deleteFunction = new EventEmitter();
   /* #endregion */
 
   /* #region  variable declaration */
@@ -40,6 +41,14 @@ export class SingleProductComponent {
   /* #region  on event functions */
   onSubmit() {
     console.log(this.product);
+  }
+
+  onClickOfDelete() {
+    this.deleteFunction.emit(this.product);
+  }
+  saverange() {
+    console.log(this.slNo + ': ' + this.product.isSelected);
+    console.log
   }
   /* #endregion */
 

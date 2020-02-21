@@ -79,13 +79,13 @@
       <!-- #endregion -->
 
       <!-- #region Button: delete -->
-      <button mat-icon-button type="button">
+      <button mat-icon-button type="button" (click)="onClickOfDelete();">
         <mat-icon>delete</mat-icon>
       </button>
       <!-- #endregion -->
 
       <!-- #region Form Field: CheckBox -->
-      <mat-checkbox formControlName="checkBox">
+      <mat-checkbox formControlName="checkBox" [(ngModel)]="product.isSelected">
       </mat-checkbox>
       <!-- #endregion -->
 

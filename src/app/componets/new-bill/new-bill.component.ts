@@ -24,7 +24,11 @@ export class NewBillComponent implements OnInit {
     this.products.push(this.getNewInitializedProduct());
   }
 
-  public onClickOfOverallDeleteButton() { }
+  public onClickOfOverallDeleteButton() {
+    this.products = this.products.filter(
+      product => !product.isSelected
+    );
+  }
 
   public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
     this.products = this.products.filter(
