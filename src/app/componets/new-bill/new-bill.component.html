@@ -31,29 +31,39 @@
 
     <!-- #region add and delete buttons -->
     <mat-card-actions class="action-buttons">
-      <button mat-icon-button matTooltip="Add Product" (click)="onClickOfAddProductButton();">
+      <button mat-icon-button [matTooltip]="getDeleteProductButtonTooltip()" [matBadge]="getTotalCount()"
+        matBadgeSize="small" [disabled]="isAddButtonDisable()" (click)="onClickOfAddProductButton();">
         <mat-icon>add</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Delete Selected Product(s)" (click)="onClickOfOverallDeleteButton();">
+      <button mat-icon-button [matTooltip]="getDeleteSelectedProductButtonTooltip()" [matBadge]="getSelectedCount()"
+        matBadgeSize="small" [disabled]="isDeleteButtonDisable()" (click)="onClickOfOverallDeleteButton();">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-card-actions>
     <!-- #endregion -->
 
+    <mat-divider></mat-divider>
+
     <!-- #region product list -->
     <mat-card-content>
       <cdk-virtual-scroll-viewport class="scroll-viewport" itemSize="50px">
         <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);"
-          *ngFor="let product of products;let i=index;" [(product)]="product" [slNo]="i+1">
+          *ngFor="let product of bill.products;let i=index;" [(product)]="product" [slNo]="i+1">
         </app-single-product>
+        <mat-error *ngIf="bill.products.length===0;">
+          Click on the Plus icon to Add a product
+        </mat-error>
       </cdk-virtual-scroll-viewport>
     </mat-card-content>
     <!-- #endregion -->
 
+    <mat-divider></mat-divider>
+
     <!-- #region Submit Button -->
     <mat-card-actions>
       <div class="submit-button">
-        <button matTooltip="Submit Bill" (click)="onSubmit();">
+        <button mat-raised-button [disabled]="bill.products.length === 0" color="primary" matTooltip="Submit Bill"
+          (click)="onSubmit();">
           Submit
         </button>
       </div>

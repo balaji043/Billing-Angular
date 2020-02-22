@@ -39,16 +39,21 @@ export class SingleProductComponent {
   /* #endregion */
 
   /* #region  on event functions */
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.product);
   }
 
-  onClickOfDelete() {
+  onClickOfDelete(): void {
     this.deleteFunction.emit(this.product);
   }
-  saverange() {
-    console.log(this.slNo + ': ' + this.product.isSelected);
-    console.log
+
+  onClickOfReset(): void {
+    this.singleProductForm.reset();
+  }
+
+  isValid(): boolean {
+    this.singleProductForm.markAllAsTouched();
+    return this.singleProductForm.valid;
   }
   /* #endregion */
 

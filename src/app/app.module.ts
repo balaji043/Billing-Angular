@@ -23,7 +23,8 @@ import {
   MatMenuModule,
   MatGridListModule,
   MatAutocompleteModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatBadgeModule
 } from '@angular/material';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -41,6 +42,7 @@ import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { SingleProductComponent } from './core/single-product/single-product.component';
 import { NewBillComponent } from './componets/new-bill/new-bill.component';
 import { ViewBillComponent } from './componets/view-bill/view-bill.component';
+import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { ViewBillComponent } from './componets/view-bill/view-bill.component';
     AppMainNavComponent,
     SingleProductComponent,
     ViewBillComponent,
-    NewBillComponent
+    NewBillComponent,
+    ConfirmPopupBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +85,11 @@ import { ViewBillComponent } from './componets/view-bill/view-bill.component';
     MatGridListModule,
     MatAutocompleteModule,
     MatTooltipModule,
-    ScrollingModule
+    ScrollingModule,
+    MatBadgeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmPopupBoxComponent]
 })
 export class AppModule { }
