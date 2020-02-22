@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { Bill } from '../../model/bill.model';
-import { ConfirmationPopup } from '../../model/';
 
 import { SingleProductComponent } from 'src/app/core/single-product/single-product.component';
 import { MatDialog } from '@angular/material';
