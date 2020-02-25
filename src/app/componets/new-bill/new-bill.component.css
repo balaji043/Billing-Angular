@@ -1,16 +1,20 @@
 .main-container {
   display: inline-block;
-  text-align: center;
+  width: -webkit-fill-available;
+  margin: 10px;
+  padding: 10px;
 }
 
 .action-buttons {
   text-align: right;
+  margin-top: 4px;
 }
 
 .product-list {
   display: inline-block;
-  margin: 4px;
-  padding: 4px;
+  margin: 10px;
+  padding: 10px;
+  width: -webkit-fill-available;
 }
 
 .submit-button {
@@ -20,12 +24,7 @@
 .new-bill {
   text-align: center;
 }
-.scroll-viewport {
-  display: inline-block;
-  height: 400px;
-  width: 1420px;
-}
 
-.example-item {
-  height: 50px;
+.scroll-viewport {
+  height: 400px;
 }

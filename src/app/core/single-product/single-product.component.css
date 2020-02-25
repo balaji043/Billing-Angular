@@ -6,11 +6,10 @@ mat-form-field {
   text-align: center;
 }
 
-.flex {
-  display: flex;
-}
-
 form {
   margin-top: 5px;
   margin-bottom: 5px;
+  min-width: max-content;
+  width: -webkit-fill-available;
+  align-self: center;
 }

@@ -43,7 +43,7 @@ export class NewBillComponent implements OnInit {
 
   public onClickOfOverallDeleteButton() {
     const dialogRef = this.dialog.open(ConfirmPopupBoxComponent, {
-      width: '300px',
+      width: 'max-content',
       data: { title: 'Confirm Delete', content: 'Do you want to delete the selected ' + this.getSelectedCount() + ' product(s).' }
     });
 
@@ -62,6 +62,17 @@ export class NewBillComponent implements OnInit {
     this.bill.products = this.bill.products.filter(
       product => product !== productToBeDeleted
     );
+  }
+
+  public onClickOfSelectButton() {
+    let isAnySelected = false;
+    this.bill.products.forEach(product => {
+      if (product.isSelected) {
+        isAnySelected = true;
+        return;
+      }
+    });
+    this.bill.products.forEach(product => product.isSelected = !isAnySelected);
   }
 
   public onSubmit(): void {
@@ -92,6 +103,8 @@ export class NewBillComponent implements OnInit {
   public isAddButtonDisable(): boolean { return this.getTotalCount() >= 20; }
 
   public isDeleteButtonDisable(): boolean { return this.getSelectedCount() === 0; }
+
+  public isSubmitAndSelectAllButtonDisable(): boolean { return this.getTotalCount() === 0; }
 
   /* #endregion */
 
