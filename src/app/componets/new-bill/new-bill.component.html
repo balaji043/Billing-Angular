@@ -55,11 +55,11 @@
         <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);"
           *ngFor="let product of bill.products;let i=index;" [(product)]="product" [slNo]="i+1">
         </app-single-product>
-        <mat-error *ngIf="bill.products.length===0;">
-          Click on the Plus icon to Add a product
-        </mat-error>
       </cdk-virtual-scroll-viewport>
     </mat-card-content>
+    <mat-error *ngIf="bill.products.length===0;" class="mat-error">
+      Click on the Add button to Add a product
+    </mat-error>
     <!-- #endregion -->
 
     <mat-divider></mat-divider>
@@ -67,8 +67,8 @@
     <!-- #region Submit Button -->
     <mat-card-actions>
       <div class="submit-button">
-        <button mat-raised-button [disabled]="bill.products.length === 0" color="primary" matTooltip="Submit Bill"
-          (click)="onSubmit();">
+        <button mat-raised-button [disabled]="isSubmitAndSelectAllButtonDisable()" color="primary"
+          matTooltip="Submit Bill" (click)="onSubmit();">
           Submit
         </button>
       </div>

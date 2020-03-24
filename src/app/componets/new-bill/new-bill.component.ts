@@ -5,6 +5,7 @@ import { Bill } from '../../model/bill.model';
 import { SingleProductComponent } from 'src/app/core/single-product/single-product.component';
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
+import { BillingService } from 'src/app/service/billing.service';
 
 @Component({
   selector: 'app-new-bill',
@@ -24,7 +25,7 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   /* #region  constructor */
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private billingService: BillingService) {
     this.bill = new Bill();
     this.bill.products = [];
     this.customerName = 'Tony Stark';
@@ -55,7 +56,6 @@ export class NewBillComponent implements OnInit {
         );
       }
     });
-
   }
 
   public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
@@ -77,8 +77,17 @@ export class NewBillComponent implements OnInit {
 
   public onSubmit(): void {
     const isValid = this.validateProductList();
+    this.bill.invoiceName = 'invoice1';
     if (isValid) {
       console.log('valid products');
+      this.billingService.saveBill(this.bill)
+        .subscribe(
+          result => {
+            console.log('saved');
+            console.log(result);
+          }, error => {
+            console.error(error);
+          });
     } else {
       console.log('invalid products');
     }

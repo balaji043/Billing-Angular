@@ -30,9 +30,8 @@
 
       <!-- #region Form Field: HSN -->
       <mat-form-field>
-        <input matInput placeholder="HSN" formControlName="hsn" [(ngModel)]="product.hsn" [(ngModel)]="product.hsn"
-          required>
-        <mat-error *ngIf="singleProductForm.controls['hsn'].hasError('required')">
+        <input matInput placeholder="HSN" formControlName="hsnCode" [(ngModel)]="product.hsnCode" required>
+        <mat-error *ngIf="singleProductForm.controls['hsnCode'].hasError('required')">
           HSN is <strong>required</strong>
         </mat-error>
       </mat-form-field>
@@ -50,13 +49,27 @@
 
       <!-- #region Form Field: GST Percentage -->
       <mat-form-field>
-        <mat-select placeholder="GST Percentage" formControlName="gstPercentage" [(ngModel)]="product.gstPercentage"
+        <mat-select placeholder="GST Percentage" formControlName="taxPercentage" [(ngModel)]="product.taxPercentage"
           required>
-          <mat-option *ngFor="let gstPercentage of gstPercentages" [value]="gstPercentage">
+          <mat-option *ngFor="let gstPercentage of taxPercentages" [value]="gstPercentage">
             {{ gstPercentage }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="singleProductForm.controls['gstPercentage'].hasError('required')">
+        <mat-error *ngIf="singleProductForm.controls['taxPercentage'].hasError('required')">
+          GST Percentage is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <!-- #endregion -->
+
+      <!-- #region Form Field: Per Value -->
+      <mat-form-field>
+        <mat-select placeholder="Per Value" formControlName="perValue" [(ngModel)]="product.perValue"
+          required>
+          <mat-option *ngFor="let perValue of perValues" [value]="perValue">
+            {{ perValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="singleProductForm.controls['perValue'].hasError('required')">
           GST Percentage is <strong>required</strong>
         </mat-error>
       </mat-form-field>

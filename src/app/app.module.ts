@@ -43,6 +43,7 @@ import { SingleProductComponent } from './core/single-product/single-product.com
 import { NewBillComponent } from './componets/new-bill/new-bill.component';
 import { ViewBillComponent } from './componets/view-bill/view-bill.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup
     SingleProductComponent,
     ViewBillComponent,
     NewBillComponent,
-    ConfirmPopupBoxComponent
+    ConfirmPopupBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +87,8 @@ import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup
     MatAutocompleteModule,
     MatTooltipModule,
     ScrollingModule,
-    MatBadgeModule
+    MatBadgeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

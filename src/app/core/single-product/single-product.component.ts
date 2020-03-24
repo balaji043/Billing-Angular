@@ -19,21 +19,24 @@ export class SingleProductComponent {
   singleProductForm = this.fb.group({
     checkBox: [],
     description: [null, Validators.required],
-    hsn: [null, Validators.required],
+    hsnCode: [null, Validators.required],
     quantity: [null, Validators.required],
     rate: [null, Validators.required],
-    gstPercentage: [null, Validators.required],
+    taxPercentage: [null, Validators.required],
+    perValue: [null, Validators.required],
     discount: [null]
   });
-  gstPercentages: number[];
+  taxPercentages: number[];
   descriptions: string[];
+  perValues: string[];
   /* #endregion */
 
   /* #region  constructor */
   constructor(private fb: FormBuilder) {
     /* #region  to be replaced with api calls */
-    this.gstPercentages = [16, 18, 21];
+    this.taxPercentages = [16, 18, 21];
     this.descriptions = ['Pen', 'Pencil', 'Eraser', 'Sharpner', 'Scale'];
+    this.perValues = ['PCS', 'DOZ', 'PKT', 'GRO', 'BOX', 'SET', 'ROL', 'BUN'];
     /* #endregion */
   }
   /* #endregion */

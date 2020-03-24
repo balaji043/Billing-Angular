@@ -1,9 +1,10 @@
 export class Product {
     description: string;
-    hsn: string;
+    hsnCode: string;
     quantity: number;
     rate: number;
-    gstPercentage: number;
+    taxPercentage: number;
     discount: number;
+    perValue: string;
     isSelected: boolean;
 }
