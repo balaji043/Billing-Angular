@@ -101,11 +101,11 @@
       <!-- #endregion -->
       <!-- #region Button: delete -->
       <button mat-icon-button type="button" (click)="onClickOfReset();">
-        <mat-icon>keyboard_return</mat-icon>
+        <mat-icon>refresh</mat-icon>
       </button>
       <!-- #endregion -->
       <!-- #region Form Field: CheckBox -->
-      <mat-checkbox formControlName="checkBox" [(ngModel)]="product.isSelected">
+      <mat-checkbox formControlName="checkBox" [(ngModel)]="product.isSelected" (change)="clickOfCheckBox.emit()">
       </mat-checkbox>
       <!-- #endregion -->
 

@@ -41,8 +41,8 @@
         <mat-icon>delete</mat-icon>
       </button>
       <button mat-icon-button [matTooltip]="getDeleteSelectedProductButtonTooltip()"
-        [disabled]="isSubmitAndSelectAllButtonDisable()" (click)="onClickOfSelectButton();">
-        <mat-icon>select_all</mat-icon>
+        [disabled]="isSubmitAndSelectAllButtonDisable()" (click)="onClickOfOverAllSelectButton();">
+        <mat-icon>{{checkBoxMatIcon}}</mat-icon>
       </button>
     </mat-card-actions>
     <!-- #endregion -->
@@ -52,7 +52,7 @@
     <!-- #region product list -->
     <mat-card-content>
       <cdk-virtual-scroll-viewport class="scroll-viewport" itemSize="50px">
-        <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);"
+        <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);" (clickOfCheckBox)="onClickOfIndividualSelectButton()"
           *ngFor="let product of bill.products;let i=index;" [(product)]="product" [slNo]="i+1">
         </app-single-product>
       </cdk-virtual-scroll-viewport>

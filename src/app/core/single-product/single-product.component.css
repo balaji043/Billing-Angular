@@ -13,3 +13,9 @@ form {
   width: -webkit-fill-available;
   align-self: center;
 }
+mat-card {
+  padding: 0px;
+  padding-left: 4px;
+  padding-right: 4px;
+
+}

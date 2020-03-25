@@ -22,6 +22,8 @@ export class NewBillComponent implements OnInit {
   bill: Bill;
   customerName: string;
   totalAmount: number;
+  isCheckAll: boolean;
+  checkBoxMatIcon: string;
   /* #endregion */
 
   /* #region  constructor */
@@ -30,6 +32,8 @@ export class NewBillComponent implements OnInit {
     this.bill.products = [];
     this.customerName = 'Tony Stark';
     this.totalAmount = 0;
+    this.isCheckAll = false;
+    this.checkBoxMatIcon = 'check_box_outline_blank';
     this.onClickOfAddProductButton();
   }
   /* #endregion */
@@ -58,13 +62,7 @@ export class NewBillComponent implements OnInit {
     });
   }
 
-  public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
-    this.bill.products = this.bill.products.filter(
-      product => product !== productToBeDeleted
-    );
-  }
-
-  public onClickOfSelectButton() {
+  public onClickOfOverAllSelectButton() {
     let isAnySelected = false;
     this.bill.products.forEach(product => {
       if (product.isSelected) {
@@ -73,6 +71,8 @@ export class NewBillComponent implements OnInit {
       }
     });
     this.bill.products.forEach(product => product.isSelected = !isAnySelected);
+    this.isCheckAll = !this.isCheckAll && !isAnySelected;
+    this.updateCheckBoxMatIcon();
   }
 
   public onSubmit(): void {
@@ -93,6 +93,19 @@ export class NewBillComponent implements OnInit {
     }
   }
 
+  /* #endregion */
+
+  /* #region  emmited event functions */
+  public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
+    this.bill.products = this.bill.products.filter(
+      product => product !== productToBeDeleted
+    );
+  }
+
+  public onClickOfIndividualSelectButton() {
+    this.isCheckAll = this.getTotalCount() === this.getSelectedCount();
+    this.updateCheckBoxMatIcon();
+  }
   /* #endregion */
 
   /* #region  get counts methods */
@@ -138,6 +151,14 @@ export class NewBillComponent implements OnInit {
     });
 
     return isValid;
+  }
+
+  private updateCheckBoxMatIcon(): void {
+    if (this.isCheckAll) {
+      this.checkBoxMatIcon = 'check_box';
+    } else {
+      this.checkBoxMatIcon = 'check_box_outline_blank';
+    }
   }
   /* #endregion */
 

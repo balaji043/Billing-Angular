@@ -42,7 +42,10 @@ import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
 import { SingleProductComponent } from './core/single-product/single-product.component';
 import { NewBillComponent } from './componets/new-bill/new-bill.component';
 import { ViewBillComponent } from './componets/view-bill/view-bill.component';
+import { CutomerPanelComponent } from './componets/cutomer-panel/cutomer-panel.component';
+import { UserPanelComponent } from './componets/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
+import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -53,6 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
     ViewBillComponent,
     NewBillComponent,
     ConfirmPopupBoxComponent,
+    CutomerPanelComponent,
+    UserPanelComponent,
+    GenericGridComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<table>
+  <caption>{{gridConfig.caption}}</caption>
+  <thead>
+    <tr class="row" >
+      <th *ngFor="let column of gridConfig.columns;let i=index;" id="{{gridConfig.uniqueName}}_TH_{{i}}">
+        {{column.columnDisplayName}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row" *ngFor="let eachData of dataSource;let i=index;" id="{{gridConfig.uniqueName}}_TR_{{i}}">
+      <div *ngFor="let column of gridConfig.columns;let j=index;" id="{{gridConfig.uniqueName}}_TD_{{j}}">
+        <div [ngSwitch]='column.type'>
+          <td *ngSwitchCase="'text'">
+            {{eachData[column.accessVariableName]}}
+          </td>
+        </div>
+      </div>
+    </tr>
+  </tbody>
+</table>

@@ -13,6 +13,7 @@ export class SingleProductComponent {
   @Input() product: Product;
   @Input() slNo: number;
   @Output() deleteFunction = new EventEmitter();
+  @Output() clickOfCheckBox = new EventEmitter();
   /* #endregion */
 
   /* #region  variable declaration */
@@ -52,6 +53,7 @@ export class SingleProductComponent {
 
   onClickOfReset(): void {
     this.singleProductForm.reset();
+    this.clickOfCheckBox.emit();
   }
 
   isValid(): boolean {
