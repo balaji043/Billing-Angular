@@ -8,7 +8,6 @@ import {
   MatNativeDateModule,
   MatSnackBarModule,
   MatIconModule,
-  MatDialogModule,
   MatButtonModule,
   MatTableModule,
   MatPaginatorModule,
@@ -24,8 +23,9 @@ import {
   MatGridListModule,
   MatAutocompleteModule,
   MatTooltipModule,
-  MatBadgeModule
+  MatBadgeModule,
 } from '@angular/material';
+import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
@@ -35,7 +35,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
@@ -47,6 +47,7 @@ import { UserPanelComponent } from './componets/user-panel/user-panel.component'
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
 import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomerRegistrationComponent } from './componets/customer-registration/customer-registration.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
     ConfirmPopupBoxComponent,
     CutomerPanelComponent,
     UserPanelComponent,
-    GenericGridComponent
+    GenericGridComponent,
+    CustomerRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -94,10 +96,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatTooltipModule,
     ScrollingModule,
     MatBadgeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers:  [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+    // ...
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmPopupBoxComponent]
+  entryComponents: [ConfirmPopupBoxComponent, CustomerRegistrationComponent]
 })
 export class AppModule { }

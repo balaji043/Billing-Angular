@@ -1,21 +1,39 @@
-<table>
-  <caption>{{gridConfig.caption}}</caption>
-  <thead>
-    <tr class="row" >
-      <th *ngFor="let column of gridConfig.columns;let i=index;" id="{{gridConfig.uniqueName}}_TH_{{i}}">
+<div>
+
+  <table class="mat-table" role="grid">
+
+    <!-- <caption class="mat-headline">{{gridConfig.caption}}</caption> -->
+
+    <tr class="mat-header-row">
+
+      <th class="mat-header-cell" *ngFor="let column of gridConfig.columns;let i=index;"
+        id="{{gridConfig.uniqueName}}_TH_{{i}}" role="columnheader">
+
         {{column.columnDisplayName}}
+
+        <div>
+
+          <mat-form-field *ngIf="column.isSearchFilter && isShowFormField">
+            <input matInput type="text" [(ngModel)]="column.searchValue" (ngModelChange)="onSearchOfFilter(column)">
+            <button mat-button matSuffix mat-icon-button aria-label="Seach" (click)="onSearchOfFilter(column);">
+              <mat-icon matSuffix >search</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
       </th>
     </tr>
-  </thead>
-  <tbody>
-    <tr class="row" *ngFor="let eachData of dataSource;let i=index;" id="{{gridConfig.uniqueName}}_TR_{{i}}">
-      <div *ngFor="let column of gridConfig.columns;let j=index;" id="{{gridConfig.uniqueName}}_TD_{{j}}">
-        <div [ngSwitch]='column.type'>
-          <td *ngSwitchCase="'text'">
+
+    <tr class="mat-row" *ngFor="let eachData of dataSource;let j = index">
+
+      <ng-container *ngFor="let column of gridConfig.columns">
+
+        <td class="mat-cell" [ngSwitch]="column.type">
+
+          <ng-container *ngSwitchCase="'text'">
             {{eachData[column.accessVariableName]}}
-          </td>
-        </div>
-      </div>
+          </ng-container>
+        </td>
+      </ng-container>
     </tr>
-  </tbody>
-</table>
+  </table>
+</div>

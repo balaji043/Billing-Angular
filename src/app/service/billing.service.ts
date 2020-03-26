@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bill } from '../model/bill.model';
-import { UtilityServiceService } from './utility-service.service';
+import { UtilityService } from './utility.service';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -16,7 +16,7 @@ export class BillingService {
     })
   };
 
-  constructor(private http: HttpClient, private utilityServiceService: UtilityServiceService) { }
+  constructor(private http: HttpClient, private utilityServiceService: UtilityService) { }
 
   saveBill(bill: Bill): Observable<Bill> {
     const url = 'http://localhost:8080/bam/bill/save';

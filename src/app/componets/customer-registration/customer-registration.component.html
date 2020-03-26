@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Customer Save</h1>
+<div mat-dialog-content>
+  <form class="form" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" [(ngModel)]="customer.name" required>
+      <mat-error *ngIf="customerForm.controls['name'].hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Phone Number" formControlName="phone" [(ngModel)]="customer.phone">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="GST-IN Number" formControlName="gstIn" [(ngModel)]="customer.gstIn">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Address Line 1" formControlName="streetAddress" [(ngModel)]="customer.streetAddress">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="City" formControlName="city" [(ngModel)]="customer.city">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="State" formControlName="state" [(ngModel)]="customer.state">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="ZIP Code" formControlName="zipCode" [(ngModel)]="customer.zipCode">
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">No</button>
+  <button mat-button (click)="onSubmit()" cdkFocusInitial>Ok</button>
+</div>

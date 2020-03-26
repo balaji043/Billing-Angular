@@ -1,1 +1,11 @@
-<app-generic-grid [gridConfig]="gridConfig" [dataSource]='customersList'></app-generic-grid>
+<mat-card>
+  <mat-card-header class="mat-headline">{{customerGridConfig.caption}}</mat-card-header>
+  <mat-card-actions class="action-buttons">
+    <button mat-icon-button matBadgeSize="medium" (click)="openCustomerRegistrationDialog();">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-actions>
+  <mat-card-content>
+    <app-generic-grid [gridConfig]="customerGridConfig" [dataSource]='customersList'></app-generic-grid>
+  </mat-card-content>
+</mat-card>
