@@ -41,6 +41,8 @@ export class CutomerPanelComponent implements OnInit {
   }
 
   private getCustomersList(): Customer[] {
+    const customer = this.getCustomer();
+    customer.name = 'not not';
     return [
       this.getCustomer(),
       this.getCustomer(),
@@ -49,7 +51,8 @@ export class CutomerPanelComponent implements OnInit {
       this.getCustomer(),
       this.getCustomer(),
       this.getCustomer(),
-      this.getCustomer()
+      this.getCustomer(),
+      customer
     ];
   }
 

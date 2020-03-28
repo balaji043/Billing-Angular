@@ -16,7 +16,7 @@ export class GenericGridComponent implements OnInit {
   public isShowFormField: boolean;
 
 
-  constructor(private utilityService: UtilityService) {  }
+  constructor(private utilityService: UtilityService) { }
 
   ngOnInit() {
     this.dSCopy = Array.from(this.dataSource);
@@ -25,7 +25,7 @@ export class GenericGridComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.isShowFormField =  window.innerWidth > 1330;
+    this.isShowFormField = window.innerWidth > 1330;
   }
 
   onSearchOfFilter(column: TableColumn): void {
@@ -34,9 +34,8 @@ export class GenericGridComponent implements OnInit {
       return;
     }
     this.dataSource = this.dSCopy.filter(e => {
-      return e[column.accessVariableName].includes(column.searchValue);
+      return e[column.accessVariableName].toLowerCase().match(column.searchValue.toLowerCase());
     });
   }
-
 
 }
