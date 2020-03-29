@@ -38,8 +38,7 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { AppMainNavComponent } from './app-main-nav/app-main-nav.component';
-import { SingleProductComponent } from './core/single-product/single-product.component';
+import { SingleProductComponent } from './componets/single-product/single-product.component';
 import { NewBillComponent } from './componets/new-bill/new-bill.component';
 import { ViewBillComponent } from './componets/view-bill/view-bill.component';
 import { CutomerPanelComponent } from './componets/cutomer-panel/cutomer-panel.component';
@@ -48,6 +47,7 @@ import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup
 import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerRegistrationComponent } from './componets/customer-registration/customer-registration.component';
+import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.component';
 
 @NgModule({
   declarations: [

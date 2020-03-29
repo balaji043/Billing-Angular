@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { Bill } from '../../model/bill.model';
 
-import { SingleProductComponent } from 'src/app/core/single-product/single-product.component';
+import { SingleProductComponent } from 'src/app/componets/single-product/single-product.component';
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
 import { BillingService } from 'src/app/service/billing.service';
