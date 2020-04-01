@@ -11,6 +11,6 @@ import { map, shareReplay } from 'rxjs/operators';
 export class AppMainNavComponent {
 
 
-  constructor(   ) {}
+  constructor() { }
 
 }

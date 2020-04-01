@@ -1,5 +1,7 @@
 <!-- #region Form : single product -->
-<form [formGroup]="singleProductForm" class="flex" (ngSubmit)="onSubmit()">
+<form [formGroup]="singleProductForm"
+      class="flex"
+      (ngSubmit)="onSubmit()">
 
   <!-- #region Card -->
   <mat-card>
@@ -13,15 +15,20 @@
 
       <!-- #region Form Field: Description -->
       <mat-form-field>
-        <input matInput placeholder="Description" formControlName="description" [(ngModel)]="product.description"
-          [matAutocomplete]="autoCompleteForDescription" required>
+        <input matInput
+               placeholder="Description"
+               formControlName="description"
+               [(ngModel)]="product.description"
+               [matAutocomplete]="autoCompleteForDescription"
+               required>
         <mat-error *ngIf="singleProductForm.controls['description'].hasError('required')">
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
       <!-- #region Form Field: AutoComplete Options -->
       <mat-autocomplete #autoCompleteForDescription="matAutocomplete">
-        <mat-option *ngFor="let description of descriptions" [value]="description">
+        <mat-option *ngFor="let description of descriptions"
+                    [value]="description">
           {{ description }}
         </mat-option>
       </mat-autocomplete>
@@ -30,7 +37,11 @@
 
       <!-- #region Form Field: HSN -->
       <mat-form-field>
-        <input matInput placeholder="HSN" formControlName="hsnCode" [(ngModel)]="product.hsnCode" required>
+        <input matInput
+               placeholder="HSN"
+               formControlName="hsnCode"
+               [(ngModel)]="product.hsnCode"
+               required>
         <mat-error *ngIf="singleProductForm.controls['hsnCode'].hasError('required')">
           HSN is <strong>required</strong>
         </mat-error>
@@ -39,8 +50,13 @@
 
       <!-- #region Form Field: Quantity -->
       <mat-form-field>
-        <input matInput placeholder="Quantity" type="number" min="0" formControlName="quantity"
-          [(ngModel)]="product.quantity" required>
+        <input matInput
+               placeholder="Quantity"
+               type="number"
+               min="0"
+               formControlName="quantity"
+               [(ngModel)]="product.quantity"
+               required>
         <mat-error *ngIf="singleProductForm.controls['quantity'].hasError('required')">
           Quantity is <strong>required</strong>
         </mat-error>
@@ -49,9 +65,12 @@
 
       <!-- #region Form Field: GST Percentage -->
       <mat-form-field>
-        <mat-select placeholder="GST Percentage" formControlName="taxPercentage" [(ngModel)]="product.taxPercentage"
-          required>
-          <mat-option *ngFor="let gstPercentage of taxPercentages" [value]="gstPercentage">
+        <mat-select placeholder="GST Percentage"
+                    formControlName="taxPercentage"
+                    [(ngModel)]="product.taxPercentage"
+                    required>
+          <mat-option *ngFor="let gstPercentage of taxPercentages"
+                      [value]="gstPercentage">
             {{ gstPercentage }}
           </mat-option>
         </mat-select>
@@ -63,9 +82,12 @@
 
       <!-- #region Form Field: Per Value -->
       <mat-form-field>
-        <mat-select placeholder="Per Value" formControlName="perValue" [(ngModel)]="product.perValue"
-          required>
-          <mat-option *ngFor="let perValue of perValues" [value]="perValue">
+        <mat-select placeholder="Per Value"
+                    formControlName="perValue"
+                    [(ngModel)]="product.perValue"
+                    required>
+          <mat-option *ngFor="let perValue of perValues"
+                      [value]="perValue">
             {{ perValue }}
           </mat-option>
         </mat-select>
@@ -77,8 +99,13 @@
 
       <!-- #region Form Field: Rate -->
       <mat-form-field>
-        <input matInput placeholder="Rate" type="number" min="0" formControlName="rate" [(ngModel)]="product.rate"
-          required>
+        <input matInput
+               placeholder="Rate"
+               type="number"
+               min="0"
+               formControlName="rate"
+               [(ngModel)]="product.rate"
+               required>
         <mat-error *ngIf="singleProductForm.controls['rate'].hasError('required')">
           Rate is <strong>required</strong>
         </mat-error>
@@ -88,24 +115,35 @@
 
       <!-- #region Form Field: Discount -->
       <mat-form-field>
-        <input matInput placeholder="Discount" type="number" min="0" max="100" formControlName="discount"
-          [(ngModel)]="product.discount">
+        <input matInput
+               placeholder="Discount"
+               type="number"
+               min="0"
+               max="100"
+               formControlName="discount"
+               [(ngModel)]="product.discount">
         <span matSuffix>%&nbsp;</span>
       </mat-form-field>
       <!-- #endregion -->
 
       <!-- #region Button: delete -->
-      <button mat-icon-button type="button" (click)="onClickOfDelete();">
+      <button mat-icon-button
+              type="button"
+              (click)="onClickOfDelete();">
         <mat-icon>delete</mat-icon>
       </button>
       <!-- #endregion -->
       <!-- #region Button: delete -->
-      <button mat-icon-button type="button" (click)="onClickOfReset();">
+      <button mat-icon-button
+              type="button"
+              (click)="onClickOfReset();">
         <mat-icon>refresh</mat-icon>
       </button>
       <!-- #endregion -->
       <!-- #region Form Field: CheckBox -->
-      <mat-checkbox formControlName="checkBox" [(ngModel)]="product.isSelected" (change)="clickOfCheckBox.emit()">
+      <mat-checkbox formControlName="checkBox"
+                    [(ngModel)]="product.isSelected"
+                    (change)="clickOfCheckBox.emit()">
       </mat-checkbox>
       <!-- #endregion -->
 

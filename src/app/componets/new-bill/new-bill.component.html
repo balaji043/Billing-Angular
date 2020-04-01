@@ -4,7 +4,8 @@
   <!-- #region middle layout -->
   <mat-card class="main-container">
     <!-- #region top layout -->
-    <mat-grid-list cols="2" rowHeight="75px">
+    <mat-grid-list cols="2"
+                   rowHeight="75px">
 
       <!-- #region customer name and total amount -->
       <mat-grid-tile>
@@ -18,8 +19,11 @@
       <!-- #region date picker -->
       <mat-grid-tile>
         <mat-form-field>
-          <input matInput [matDatepicker]="manualDatePicker" placeholder="Manual Date">
-          <mat-datepicker-toggle matSuffix [for]="manualDatePicker"></mat-datepicker-toggle>
+          <input matInput
+                 [matDatepicker]="manualDatePicker"
+                 placeholder="Manual Date">
+          <mat-datepicker-toggle matSuffix
+                                 [for]="manualDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #manualDatePicker></mat-datepicker>
         </mat-form-field>
       </mat-grid-tile>
@@ -32,16 +36,26 @@
 
     <!-- #region add and delete buttons -->
     <mat-card-actions class="action-buttons">
-      <button mat-icon-button [matTooltip]="getDeleteProductButtonTooltip()" [matBadge]="getTotalCount()"
-        matBadgeSize="small" [disabled]="isAddButtonDisable()" (click)="onClickOfAddProductButton();">
+      <button mat-icon-button
+              [matTooltip]="getDeleteProductButtonTooltip()"
+              [matBadge]="getTotalCount()"
+              matBadgeSize="small"
+              [disabled]="isAddButtonDisable()"
+              (click)="onClickOfAddProductButton();">
         <mat-icon>add</mat-icon>
       </button>
-      <button mat-icon-button [matTooltip]="getDeleteSelectedProductButtonTooltip()" [matBadge]="getSelectedCount()"
-        matBadgeSize="small" [disabled]="isDeleteButtonDisable()" (click)="onClickOfOverallDeleteButton();">
+      <button mat-icon-button
+              [matTooltip]="getDeleteSelectedProductButtonTooltip()"
+              [matBadge]="getSelectedCount()"
+              matBadgeSize="small"
+              [disabled]="isDeleteButtonDisable()"
+              (click)="onClickOfOverallDeleteButton();">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-icon-button [matTooltip]="getDeleteSelectedProductButtonTooltip()"
-        [disabled]="isSubmitAndSelectAllButtonDisable()" (click)="onClickOfOverAllSelectButton();">
+      <button mat-icon-button
+              [matTooltip]="getDeleteSelectedProductButtonTooltip()"
+              [disabled]="isSubmitAndSelectAllButtonDisable()"
+              (click)="onClickOfOverAllSelectButton();">
         <mat-icon>{{checkBoxMatIcon}}</mat-icon>
       </button>
     </mat-card-actions>
@@ -51,13 +65,19 @@
 
     <!-- #region product list -->
     <mat-card-content>
-      <cdk-virtual-scroll-viewport class="scroll-viewport" itemSize="50px">
-        <app-single-product class="product-list" (deleteFunction)="onClickOfIndividualDeleteButton($event);" (clickOfCheckBox)="onClickOfIndividualSelectButton()"
-          *ngFor="let product of bill.products;let i=index;" [(product)]="product" [slNo]="i+1">
+      <cdk-virtual-scroll-viewport class="scroll-viewport"
+                                   itemSize="50px">
+        <app-single-product class="product-list"
+                            (deleteFunction)="onClickOfIndividualDeleteButton($event);"
+                            (clickOfCheckBox)="onClickOfIndividualSelectButton()"
+                            *ngFor="let product of bill.products;let i=index;"
+                            [(product)]="product"
+                            [slNo]="i+1">
         </app-single-product>
       </cdk-virtual-scroll-viewport>
     </mat-card-content>
-    <mat-error *ngIf="bill.products.length===0;" class="mat-error">
+    <mat-error *ngIf="bill.products.length===0;"
+               class="mat-error">
       Click on the Add button to Add a product
     </mat-error>
     <!-- #endregion -->
@@ -67,8 +87,11 @@
     <!-- #region Submit Button -->
     <mat-card-actions>
       <div class="submit-button">
-        <button mat-raised-button [disabled]="isSubmitAndSelectAllButtonDisable()" color="primary"
-          matTooltip="Submit Bill" (click)="onSubmit();">
+        <button mat-raised-button
+                [disabled]="isSubmitAndSelectAllButtonDisable()"
+                color="primary"
+                matTooltip="Submit Bill"
+                (click)="onSubmit();">
           Submit
         </button>
       </div>
