@@ -75,6 +75,7 @@ export class NewBillComponent implements OnInit {
         this.products.controls = this.products.controls.filter(
           product => !product.get('checkBox').value
         );
+        this.onClickOfIndividualSelectButton();
       }
     });
   }
@@ -114,14 +115,8 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   /* #region  emmited event functions */
-  public onClickOfIndividualDeleteButton(productToBeDeleted: FormGroup) {
-    this.products.controls = this.products.controls.filter(
-      product => product !== productToBeDeleted
-    );
-  }
-
   public onClickOfIndividualSelectButton() {
-    this.isCheckAll = this.getTotalCount === this.getSelectedCount;
+    this.isCheckAll = this.getTotalCount !== 0 && this.getTotalCount === this.getSelectedCount;
     this.updateCheckBoxMatIcon();
   }
   /* #endregion */
@@ -161,19 +156,6 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   /* #region  private methods */
-
-  private validateProductList(): boolean {
-    let isValid = true;
-
-    this.productComponentList.forEach(element => {
-      if (!element.isValid()) {
-        isValid = false;
-        return;
-      }
-    });
-
-    return isValid;
-  }
 
   private updateCheckBoxMatIcon(): void {
     if (this.isCheckAll) {

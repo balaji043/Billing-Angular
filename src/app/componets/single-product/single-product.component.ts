@@ -12,7 +12,6 @@ export class SingleProductComponent {
   /* #region  component inputs */
   @Input() singleProductForm: FormGroup;
   @Input() slNo: number;
-  @Output() deleteFunction = new EventEmitter();
   @Output() clickOfCheckBox = new EventEmitter();
   /* #endregion */
 
@@ -35,10 +34,6 @@ export class SingleProductComponent {
   /* #region  on event functions */
   onSubmit(): void {
     // console.log(this.);
-  }
-
-  onClickOfDelete(): void {
-    this.deleteFunction.emit(this.singleProductForm);
   }
 
   onClickOfReset(): void {
