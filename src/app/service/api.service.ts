@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -13,11 +14,15 @@ export class ApiService {
   };
   constructor(private http: HttpClient) { }
 
-  post(url: string, obj: any): Observable<any> {
-    return this.http.post<any>(url, obj);
+  post(postUrl: string, obj: any): Observable<any> {
+    return this.http.post<any>(postUrl, obj);
   }
 
-  put(url: string, obj: any): Observable<any> {
-    return this.http.put<any>(url, obj);
+  put(putUrl: string, obj: any): Observable<any> {
+    return this.http.put<any>(putUrl, obj);
   }
+  get(getUrl: string): Observable<any> {
+    throw this.http.get<any>(getUrl);
+  }
+
 }

@@ -49,7 +49,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomerRegistrationComponent } from './componets/customer-registration/customer-registration.component';
 import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.component';
 import { LoginComponent } from './componets/login/login.component';
-import { AlertComponent } from './core/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,6 @@ import { AlertComponent } from './core/alert/alert.component';
     GenericGridComponent,
     CustomerRegistrationComponent,
     LoginComponent,
-    AlertComponent
   ],
   imports: [
     BrowserModule,

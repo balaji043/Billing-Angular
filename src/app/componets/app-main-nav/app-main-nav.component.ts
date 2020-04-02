@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -10,7 +9,22 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class AppMainNavComponent {
 
+  constructor(
+    private tokenStorageService: TokenStorageService,
+    private router: Router
+  ) {
+    if (!this.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+    }
+  }
 
-  constructor() { }
+  logout() {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
+
+  get isLoggedIn() {
+    return !!this.tokenStorageService.getToken();
+  }
 
 }

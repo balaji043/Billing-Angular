@@ -1,0 +1,54 @@
+<div class="main-div">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Welcome!!!
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm">
+        <p>
+          <mat-form-field>
+            <input matInput
+                   placeholder="User Name"
+                   formControlName="userName"
+                   required
+                   autocomplete="off">
+            <mat-icon matSuffix>
+              person
+            </mat-icon>
+            <mat-error *ngIf="loginForm.controls['userName'].hasError('required')">
+              User Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <input matInput
+                   placeholder="Password"
+                   formControlName="password"
+                   required
+                   type="password"
+                   autocomplete="off">
+            <mat-icon matSuffix>
+              lock
+            </mat-icon>
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+      </form>
+      <mat-card-actions>
+        <div class="submit-button">
+          <button mat-raised-button
+                  color="primary"
+                  matTooltip="Login"
+                  (click)="onSubmit();">
+            Login
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

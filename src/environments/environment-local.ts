@@ -30,7 +30,11 @@ export const ENV_LOCAL = new Environment(
         new EndPoint('Save', ''),
         new EndPoint('Update', ''),
         new EndPoint('Search', ''),
-        new EndPoint('Delete', '')
+        new EndPoint('Delete', ''),
+      ]),
+    new MicroService('API-AUTH', '/api/auth',
+      [
+        new EndPoint('SignIn', '/signin')
       ])
   ]
 );

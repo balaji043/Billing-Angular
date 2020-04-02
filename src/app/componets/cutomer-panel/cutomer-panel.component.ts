@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GridConfig } from 'src/app/model/grid-config';
-import { BillingConstants } from 'src/app/utils/billing-constants';
-import { Customer } from 'src/app/model/customer.model';
 import { MatDialog } from '@angular/material';
-import { CustomerRegistrationComponent } from '../customer-registration/customer-registration.component';
-import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
 import { CustomerTableConfig } from 'src/app/config/generic-table-config/customer-table-config';
+import { CustomerRegistrationComponent } from '../customer-registration/customer-registration.component';
+import { GridConfig } from 'src/app/model/grid-config';
+import { Customer } from 'src/app/model/customer.model';
 
 @Component({
   selector: 'app-cutomer-panel',

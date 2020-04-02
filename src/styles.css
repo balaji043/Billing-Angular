@@ -15,3 +15,9 @@ body {
 .align-center {
   text-align: center;
 }
+
+.submit-button {
+  text-align: right;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

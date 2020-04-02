@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Customer } from 'src/app/model/customer.model';
+import { Component, Inject } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Customer } from 'src/app/model/customer.model';
 
 @Component({
   selector: 'app-customer-registration',
