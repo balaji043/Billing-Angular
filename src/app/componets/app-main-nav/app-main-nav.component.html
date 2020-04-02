@@ -1,11 +1,10 @@
 <mat-toolbar *ngIf="isLoggedIn"
              color="primary"
              class="fixed-header">
+
   <mat-toolbar-row>
+    <mat-icon matPrefix>home</mat-icon>
     <div class="mr-auto">
-      <span>
-        <mat-icon>home</mat-icon>
-      </span>
       <a mat-button
          routerLink="/view-bill"
          routerLinkActive="active-link">View Bill</a>

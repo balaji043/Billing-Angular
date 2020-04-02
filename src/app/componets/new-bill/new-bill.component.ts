@@ -132,7 +132,7 @@ export class NewBillComponent implements OnInit {
 
   get getSelectedCount(): number {
     return this.products.controls.filter(
-      product => product.get('checkBox')
+      product => product.get('checkBox').value
     ).length;
   }
 
