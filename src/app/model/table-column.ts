@@ -7,5 +7,5 @@ export class TableColumn {
     searchValue: string;
     searchType: string;
     searchData: string;
-    
+
 }

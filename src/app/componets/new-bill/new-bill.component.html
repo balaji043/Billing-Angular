@@ -1,5 +1,6 @@
 <!-- #region new bill div-->
-<div class="new-bill">
+<div class="new-bill"
+     [formGroup]="billForm">
 
   <!-- #region middle layout -->
   <mat-card class="main-container">
@@ -38,7 +39,7 @@
     <mat-card-actions class="action-buttons">
       <button mat-icon-button
               [matTooltip]="getDeleteProductButtonTooltip()"
-              [matBadge]="getTotalCount()"
+              [matBadge]="getTotalCount"
               matBadgeSize="small"
               [disabled]="isAddButtonDisable()"
               (click)="onClickOfAddProductButton();">
@@ -46,7 +47,7 @@
       </button>
       <button mat-icon-button
               [matTooltip]="getDeleteSelectedProductButtonTooltip()"
-              [matBadge]="getSelectedCount()"
+              [matBadge]="getSelectedCount"
               matBadgeSize="small"
               [disabled]="isDeleteButtonDisable()"
               (click)="onClickOfOverallDeleteButton();">
@@ -67,16 +68,17 @@
     <mat-card-content>
       <cdk-virtual-scroll-viewport class="scroll-viewport"
                                    itemSize="50px">
-        <app-single-product class="product-list"
+        <app-single-product formArrayName="products"
+                            class="product-list"
                             (deleteFunction)="onClickOfIndividualDeleteButton($event);"
                             (clickOfCheckBox)="onClickOfIndividualSelectButton()"
-                            *ngFor="let product of bill.products;let i=index;"
-                            [(product)]="product"
+                            *ngFor="let product of products.controls;let i=index;"
+                            [(singleProductForm)]="product"
                             [slNo]="i+1">
         </app-single-product>
       </cdk-virtual-scroll-viewport>
     </mat-card-content>
-    <mat-error *ngIf="bill.products.length===0;"
+    <mat-error *ngIf="products.length===0;"
                class="mat-error">
       Click on the Add button to Add a product
     </mat-error>

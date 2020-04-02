@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/model/product.model';
 
 @Component({
@@ -10,23 +10,13 @@ import { Product } from 'src/app/model/product.model';
 export class SingleProductComponent {
 
   /* #region  component inputs */
-  @Input() product: Product;
+  @Input() singleProductForm: FormGroup;
   @Input() slNo: number;
   @Output() deleteFunction = new EventEmitter();
   @Output() clickOfCheckBox = new EventEmitter();
   /* #endregion */
 
   /* #region  variable declaration */
-  singleProductForm = this.fb.group({
-    checkBox: [],
-    description: [null, Validators.required],
-    hsnCode: [null, Validators.required],
-    quantity: [null, Validators.required],
-    rate: [null, Validators.required],
-    taxPercentage: [null, Validators.required],
-    perValue: [null, Validators.required],
-    discount: [null]
-  });
   taxPercentages: number[];
   descriptions: string[];
   perValues: string[];
@@ -44,11 +34,11 @@ export class SingleProductComponent {
 
   /* #region  on event functions */
   onSubmit(): void {
-    console.log(this.product);
+    // console.log(this.);
   }
 
   onClickOfDelete(): void {
-    this.deleteFunction.emit(this.product);
+    this.deleteFunction.emit(this.singleProductForm);
   }
 
   onClickOfReset(): void {

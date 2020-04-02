@@ -6,6 +6,7 @@ import { SingleProductComponent } from 'src/app/componets/single-product/single-
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
 import { BillingService } from 'src/app/service/billing.service';
+import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-bill',
@@ -19,17 +20,23 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   /* #region  variable declaration */
-  bill: Bill;
   customerName: string;
   totalAmount: number;
   isCheckAll: boolean;
   checkBoxMatIcon: string;
+  billForm = this.fb.group({
+    id: [],
+    invoiceName: [],
+    creationDate: [],
+    userId: [],
+    customerId: [],
+    billType: [],
+    products: this.fb.array([])
+  });
   /* #endregion */
 
   /* #region  constructor */
-  constructor(public dialog: MatDialog, private billingService: BillingService) {
-    this.bill = new Bill();
-    this.bill.products = [];
+  constructor(public dialog: MatDialog, private billingService: BillingService, private fb: FormBuilder) {
     this.customerName = 'Tony Stark';
     this.totalAmount = 0;
     this.isCheckAll = false;
@@ -43,20 +50,31 @@ export class NewBillComponent implements OnInit {
   /* #region  on click action methods */
 
   public onClickOfAddProductButton() {
-    this.bill.products.push(new Product());
+    if (this.products) {
+      this.products.push(this.fb.group({
+        checkBox: [],
+        description: [null, Validators.required],
+        hsnCode: [null, Validators.required],
+        quantity: [null, Validators.required],
+        rate: [null, Validators.required],
+        taxPercentage: [null, Validators.required],
+        perValue: [null, Validators.required],
+        discount: [null]
+      }));
+    }
   }
 
   public onClickOfOverallDeleteButton() {
     const dialogRef = this.dialog.open(ConfirmPopupBoxComponent, {
       width: 'max-content',
-      data: { title: 'Confirm Delete', content: 'Do you want to delete the selected ' + this.getSelectedCount() + ' product(s).' }
+      data: { title: 'Confirm Delete', content: 'Do you want to delete the selected ' + this.getSelectedCount + ' product(s).' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       if (result) {
-        this.bill.products = this.bill.products.filter(
-          product => !product.isSelected
+        this.products.controls = this.products.controls.filter(
+          product => !product.get('checkBox').value
         );
       }
     });
@@ -64,23 +82,24 @@ export class NewBillComponent implements OnInit {
 
   public onClickOfOverAllSelectButton() {
     let isAnySelected = false;
-    this.bill.products.forEach(product => {
-      if (product.isSelected) {
+    this.products.controls.forEach(product => {
+      if (product.get('checkBox').value) {
         isAnySelected = true;
         return;
       }
     });
-    this.bill.products.forEach(product => product.isSelected = !isAnySelected);
+    this.products.controls.forEach(product => product.get('checkBox').setValue(!isAnySelected));
     this.isCheckAll = !this.isCheckAll && !isAnySelected;
     this.updateCheckBoxMatIcon();
   }
 
   public onSubmit(): void {
-    const isValid = this.validateProductList();
-    this.bill.invoiceName = 'invoice1';
+    const isValid = this.billForm.valid;
+    this.billForm.get('invoiceName').setValue('invoice1');
     if (isValid) {
       console.log('valid products');
-      this.billingService.saveBill(this.bill)
+      const bill = this.billForm.value as Bill;
+      this.billingService.saveBill(bill)
         .subscribe(
           result => {
             console.log('saved');
@@ -96,37 +115,41 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   /* #region  emmited event functions */
-  public onClickOfIndividualDeleteButton(productToBeDeleted: Product) {
-    this.bill.products = this.bill.products.filter(
+  public onClickOfIndividualDeleteButton(productToBeDeleted: FormGroup) {
+    this.products.controls = this.products.controls.filter(
       product => product !== productToBeDeleted
     );
   }
 
   public onClickOfIndividualSelectButton() {
-    this.isCheckAll = this.getTotalCount() === this.getSelectedCount();
+    this.isCheckAll = this.getTotalCount === this.getSelectedCount;
     this.updateCheckBoxMatIcon();
   }
   /* #endregion */
 
   /* #region  get counts methods */
 
-  public getTotalCount(): number { return this.bill.products.length; }
+  get getTotalCount(): number { return this.products.length; }
 
-  public getSelectedCount(): number {
-    return this.bill.products.filter(
-      product => product.isSelected
+  get getSelectedCount(): number {
+    return this.products.controls.filter(
+      product => product.get('checkBox')
     ).length;
+  }
+
+  get products(): FormArray {
+    return this.billForm.get('products') as FormArray;
   }
 
   /* #endregion */
 
   /* #region enable and disable buttons */
 
-  public isAddButtonDisable(): boolean { return this.getTotalCount() >= 20; }
+  public isAddButtonDisable(): boolean { return this.getTotalCount >= 20; }
 
-  public isDeleteButtonDisable(): boolean { return this.getSelectedCount() === 0; }
+  public isDeleteButtonDisable(): boolean { return this.getSelectedCount === 0; }
 
-  public isSubmitAndSelectAllButtonDisable(): boolean { return this.getTotalCount() === 0; }
+  public isSubmitAndSelectAllButtonDisable(): boolean { return this.getTotalCount === 0; }
 
   /* #endregion */
 

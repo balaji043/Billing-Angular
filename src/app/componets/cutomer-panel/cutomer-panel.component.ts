@@ -5,7 +5,7 @@ import { Customer } from 'src/app/model/customer.model';
 import { MatDialog } from '@angular/material';
 import { CustomerRegistrationComponent } from '../customer-registration/customer-registration.component';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
-import { FormBuilder, Validators } from '@angular/forms';
+import { CustomerTableConfig } from 'src/app/config/generic-table-config/customer-table-config';
 
 @Component({
   selector: 'app-cutomer-panel',
@@ -18,7 +18,7 @@ export class CutomerPanelComponent implements OnInit {
   customersList: Customer[];
 
   constructor(public dialog: MatDialog, ) {
-    this.customerGridConfig = BillingConstants.CUSTOMER_TABLE_CONFIG();
+    this.customerGridConfig = CustomerTableConfig();
     this.customersList = this.getCustomersList();
   }
 
@@ -41,23 +41,19 @@ export class CutomerPanelComponent implements OnInit {
   }
 
   private getCustomersList(): Customer[] {
-    const customer = this.getCustomer();
+    const customer = new Customer();
     customer.name = 'not not';
     return [
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
-      this.getCustomer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
+      new Customer(),
       customer
     ];
-  }
-
-  private getCustomer(): Customer {
-    return new Customer();
   }
 
 }

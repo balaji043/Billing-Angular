@@ -2,28 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bill } from '../model/bill.model';
 import { UtilityService } from './utility.service';
-import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { EnvironmentService } from './environment.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BillingService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  constructor(private http: HttpClient, private utilityServiceService: UtilityService) { }
+  constructor(
+    private apiService: ApiService,
+    private environmentService: EnvironmentService
+  ) { }
 
   saveBill(bill: Bill): Observable<Bill> {
-    const url = 'http://localhost:8080/bam/bill/save';
-    if (this.utilityServiceService.isNullOrUndefinedOrEmpty(bill.id)) {
-      return this.http.post<Bill>(url, bill);
-    } else {
-      return this.http.put<Bill>(url, bill);
-    }
+    return this.apiService.post(this.environmentService.getUrl('Bill-MS', 'Save'), bill);
+  }
+
+  updateBill(bill: Bill): Observable<Bill> {
+    return this.apiService.put(this.environmentService.getUrl('Bill-MS', 'Update'), bill);
   }
 }

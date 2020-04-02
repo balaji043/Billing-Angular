@@ -1,14 +1,14 @@
 import { Product } from './product.model';
-import { User } from './user.model';
-import { Customer } from './customer.model';
 import { BillType } from './billType.model';
 
-export class Bill {
+export class Bill extends Base {
     id: number;
+    @JsonIgnore
+    checkBox: boolean;
     invoiceName: string;
     creationDate: string;
     products: Array<Product>;
-    user: User;
-    customer: Customer;
+    userId: number;
+    customerId: number;
     billType: BillType;
 }
