@@ -1,11 +1,15 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Bill } from '../../model/bill.model';
 
-import { SingleProductComponent } from 'src/app/componets/single-product/single-product.component';
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
 import { BillingService } from 'src/app/service/billing.service';
-import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
+import { Customer } from 'src/app/model/customer.model';
+import { SharedService } from 'src/app/service/shared.service';
+import { UtilityService } from 'src/app/service/utility.service';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+import { BillType } from 'src/app/model/billType.model';
 
 @Component({
   selector: 'app-new-bill',
@@ -14,37 +18,57 @@ import { FormBuilder, FormArray, Validators, FormGroup } from '@angular/forms';
 })
 export class NewBillComponent implements OnInit {
 
-  /* #region angular directives */
-  @ViewChildren(SingleProductComponent) productComponentList: QueryList<SingleProductComponent>;
-  /* #endregion */
-
   /* #region  variable declaration */
-  customerName: string;
+  selectedCustomer: Customer;
   totalAmount: number;
   isCheckAll: boolean;
+  isCustomerSelected: boolean;
   checkBoxMatIcon: string;
   billForm = this.fb.group({
-    id: [],
     invoiceName: [],
     creationDate: [],
-    userId: [],
+    userId: [null, Validators.required],
     customerId: [],
-    billType: [],
     products: this.fb.array([])
   });
+  customerList: Customer[];
   /* #endregion */
 
   /* #region  constructor */
-  constructor(public dialog: MatDialog, private billingService: BillingService, private fb: FormBuilder) {
-    this.customerName = 'Tony Stark';
+  constructor(
+    public dialog: MatDialog,
+    private billingService: BillingService,
+    private fb: FormBuilder,
+    private sharedService: SharedService,
+    private uService: UtilityService,
+    private tokenStorageService: TokenStorageService
+  ) {
+    this.billForm.get('userId').setValue(this.tokenStorageService.getUser().id);
     this.totalAmount = 0;
     this.isCheckAll = false;
     this.checkBoxMatIcon = 'check_box_outline_blank';
     this.onClickOfAddProductButton();
+    this.customerList = this.sharedService.getCustomersList();
+    this.isCustomerSelected = false;
   }
   /* #endregion */
 
   ngOnInit() { }
+
+  public onCustomerTextChange(value: string): void {
+    if (this.uService.isNullOrUndefinedOrEmpty(value) || value.length < 3) {
+      return;
+    }
+    this.customerList = this.sharedService.getCustomersList();
+  }
+
+  public getCustomerNameById(id: number): string {
+    this.selectedCustomer = this.customerList.find(c => id === c.id);
+    return this.uService.isNullOrUndefined(this.selectedCustomer)
+      || this.uService.isNullOrUndefinedOrEmpty(this.selectedCustomer.name) ?
+      ''
+      : this.selectedCustomer.name;
+  }
 
   /* #region  on click action methods */
 
@@ -95,10 +119,14 @@ export class NewBillComponent implements OnInit {
 
   public onSubmit(): void {
     const isValid = this.billForm.valid;
-    this.billForm.get('invoiceName').setValue('invoice1');
     if (isValid) {
       console.log('valid products');
-      const bill = this.billForm.value as Bill;
+      const bill = this.billForm.value;
+      bill.billType = this.uService.isNullOrUndefined(this.selectedCustomer.gstIn) ? BillType.NON_GST : BillType.GST;
+      bill.products.forEach(product => {
+        delete product.checkbox;
+      });
+      bill.creationDate = '2020-04-19';
       this.billingService.saveBill(bill)
         .subscribe(
           result => {
@@ -109,6 +137,15 @@ export class NewBillComponent implements OnInit {
           });
     } else {
       console.log('invalid products');
+    }
+  }
+
+  public onClickOfCustomerSelect(): void {
+    if (this.uService.isNullOrUndefined(this.selectedCustomer)) {
+      this.billForm.get('customerId').markAsTouched();
+    } else {
+      this.isCustomerSelected = true;
+
     }
   }
 

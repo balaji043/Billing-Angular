@@ -26,7 +26,7 @@ export class CustomerRegistrationComponent {
   constructor(public dialogRef: MatDialogRef<CustomerRegistrationComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private fb: FormBuilder) {
-    this.customer = new Customer();
+    this.customer = new Customer(1);
   }
 
   onSubmit(): void {

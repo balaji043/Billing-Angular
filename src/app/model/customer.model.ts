@@ -1,4 +1,5 @@
 export class Customer {
+    id: number;
     name: string;
     phone: string;
     gstIn: string;
@@ -6,7 +7,8 @@ export class Customer {
     city: string;
     state: string;
     zipCode: string;
-    constructor() {
+    constructor(id: number) {
+        this.id = id;
         this.name = 'Name';
         this.phone = '9876543217';
         this.gstIn = '646546797878';

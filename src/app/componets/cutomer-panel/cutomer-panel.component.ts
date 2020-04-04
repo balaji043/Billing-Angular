@@ -4,6 +4,7 @@ import { CustomerTableConfig } from 'src/app/config/generic-table-config/custome
 import { CustomerRegistrationComponent } from '../customer-registration/customer-registration.component';
 import { GridConfig } from 'src/app/model/grid-config';
 import { Customer } from 'src/app/model/customer.model';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-cutomer-panel',
@@ -15,9 +16,9 @@ export class CutomerPanelComponent implements OnInit {
   customerGridConfig: GridConfig;
   customersList: Customer[];
 
-  constructor(public dialog: MatDialog, ) {
+  constructor(public dialog: MatDialog, private sharedService: SharedService) {
     this.customerGridConfig = CustomerTableConfig();
-    this.customersList = this.getCustomersList();
+    this.customersList = this.sharedService.getCustomersList();
   }
 
   ngOnInit() {
@@ -36,22 +37,6 @@ export class CutomerPanelComponent implements OnInit {
         console.log('not saved');
       }
     });
-  }
-
-  private getCustomersList(): Customer[] {
-    const customer = new Customer();
-    customer.name = 'not not';
-    return [
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      new Customer(),
-      customer
-    ];
   }
 
 }

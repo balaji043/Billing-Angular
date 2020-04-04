@@ -1,106 +1,139 @@
-<!-- #region new bill div-->
-<div class="new-bill"
-     [formGroup]="billForm">
+<div [formGroup]="billForm">
 
-  <!-- #region middle layout -->
-  <mat-card class="main-container">
-    <!-- #region top layout -->
-    <mat-grid-list cols="2"
-                   rowHeight="75px">
+  <!-- #region customer select region -->
+  <div *ngIf="!isCustomerSelected">
+    <!-- #region Form Field: Description -->
+    <mat-form-field>
+      <input matInput
+             placeholder="Customer Name"
+             formControlName="customerId"
+             [matAutocomplete]="autoCompleteForCustomerName"
+             required>
+      <mat-error *ngIf="billForm.controls['customerId'].hasError('required')">
+        Customer Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- #region Form Field: AutoComplete Options -->
+    <mat-autocomplete #autoCompleteForCustomerName="matAutocomplete"
+                      [displayWith]="getCustomerNameById.bind(this)">
+      <mat-option *ngFor="let customer of customerList"
+                  [value]="customer.id">
+        {{ customer.name }}
+      </mat-option>
+    </mat-autocomplete>
+    <!-- #endregion -->
+    <!-- #endregion -->
+    <button mat-button
+            color="primary"
+            (click)="onClickOfCustomerSelect();">Select</button>
+  </div>
+  <!-- #endregion -->
 
-      <!-- #region customer name and total amount -->
-      <mat-grid-tile>
-        <div>
-          <p>Customer Name : <strong>{{customerName}}</strong></p>
-          <p>Total Amount : <strong>{{totalAmount}}</strong></p>
-        </div>
-      </mat-grid-tile>
+  <!-- #region new bill div-->
+  <div class="new-bill"
+       *ngIf="isCustomerSelected">
+
+    <!-- #region middle layout -->
+    <mat-card class="main-container">
+      <!-- #region top layout -->
+      <mat-grid-list cols="2"
+                     rowHeight="75px">
+
+        <!-- #region customer name and total amount -->
+        <mat-grid-tile>
+          <div>
+            <p>Customer Name : <strong>{{selectedCustomer.name?selectedCustomer.name:''}}</strong></p>
+            <p>Total Amount : <strong>{{totalAmount}}</strong></p>
+          </div>
+        </mat-grid-tile>
+        <!-- #endregion -->
+
+        <!-- #region date picker -->
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput
+                   [matDatepicker]="manualDatePicker"
+                   placeholder="Manual Date">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="manualDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #manualDatePicker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <!-- #endregion -->
+
+      </mat-grid-list>
       <!-- #endregion -->
 
-      <!-- #region date picker -->
-      <mat-grid-tile>
-        <mat-form-field>
-          <input matInput
-                 [matDatepicker]="manualDatePicker"
-                 placeholder="Manual Date">
-          <mat-datepicker-toggle matSuffix
-                                 [for]="manualDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #manualDatePicker></mat-datepicker>
-        </mat-form-field>
-      </mat-grid-tile>
-      <!-- #endregion -->
+      <mat-divider></mat-divider>
 
-    </mat-grid-list>
-    <!-- #endregion -->
-
-    <mat-divider></mat-divider>
-
-    <!-- #region add and delete buttons -->
-    <mat-card-actions class="action-buttons">
-      <button mat-icon-button
-              [matTooltip]="getDeleteProductButtonTooltip()"
-              [matBadge]="getTotalCount"
-              matBadgeSize="small"
-              [disabled]="isAddButtonDisable()"
-              (click)="onClickOfAddProductButton();">
-        <mat-icon>add</mat-icon>
-      </button>
-      <button mat-icon-button
-              [matTooltip]="getDeleteSelectedProductButtonTooltip()"
-              [matBadge]="getSelectedCount"
-              matBadgeSize="small"
-              [disabled]="isDeleteButtonDisable()"
-              (click)="onClickOfOverallDeleteButton();">
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button mat-icon-button
-              [matTooltip]="getDeleteSelectedProductButtonTooltip()"
-              [disabled]="isSubmitAndSelectAllButtonDisable()"
-              (click)="onClickOfOverAllSelectButton();">
-        <mat-icon>{{checkBoxMatIcon}}</mat-icon>
-      </button>
-    </mat-card-actions>
-    <!-- #endregion -->
-
-    <mat-divider></mat-divider>
-
-    <!-- #region product list -->
-    <mat-card-content>
-      <cdk-virtual-scroll-viewport class="scroll-viewport"
-                                   itemSize="50px">
-        <app-single-product formArrayName="products"
-                            class="product-list"
-                            (clickOfCheckBox)="onClickOfIndividualSelectButton()"
-                            *ngFor="let product of products.controls;let i=index;"
-                            [(singleProductForm)]="product"
-                            [slNo]="i+1">
-        </app-single-product>
-      </cdk-virtual-scroll-viewport>
-    </mat-card-content>
-    <mat-error *ngIf="products.length===0;"
-               class="mat-error">
-      Click on the Add button to Add a product
-    </mat-error>
-    <!-- #endregion -->
-
-    <mat-divider></mat-divider>
-
-    <!-- #region Submit Button -->
-    <mat-card-actions>
-      <div class="submit-button">
-        <button mat-raised-button
-                [disabled]="isSubmitAndSelectAllButtonDisable()"
-                color="primary"
-                matTooltip="Submit Bill"
-                (click)="onSubmit();">
-          Submit
+      <!-- #region add and delete buttons -->
+      <mat-card-actions class="action-buttons">
+        <button mat-icon-button
+                [matTooltip]="getDeleteProductButtonTooltip()"
+                [matBadge]="getTotalCount"
+                matBadgeSize="small"
+                [disabled]="isAddButtonDisable()"
+                (click)="onClickOfAddProductButton();">
+          <mat-icon>add</mat-icon>
         </button>
-      </div>
-    </mat-card-actions>
+        <button mat-icon-button
+                [matTooltip]="getDeleteSelectedProductButtonTooltip()"
+                [matBadge]="getSelectedCount"
+                matBadgeSize="small"
+                [disabled]="isDeleteButtonDisable()"
+                (click)="onClickOfOverallDeleteButton();">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button
+                [matTooltip]="getDeleteSelectedProductButtonTooltip()"
+                [disabled]="isSubmitAndSelectAllButtonDisable()"
+                (click)="onClickOfOverAllSelectButton();">
+          <mat-icon>{{checkBoxMatIcon}}</mat-icon>
+        </button>
+      </mat-card-actions>
+      <!-- #endregion -->
+
+      <mat-divider></mat-divider>
+
+      <!-- #region product list -->
+      <mat-card-content>
+        <cdk-virtual-scroll-viewport class="scroll-viewport"
+                                     itemSize="50px">
+          <app-single-product formArrayName="products"
+                              class="product-list"
+                              (clickOfCheckBox)="onClickOfIndividualSelectButton()"
+                              *ngFor="let product of products.controls;let i=index;"
+                              [(singleProductForm)]="product"
+                              [slNo]="i+1">
+          </app-single-product>
+        </cdk-virtual-scroll-viewport>
+      </mat-card-content>
+      <mat-error *ngIf="products.length===0;"
+                 class="mat-error">
+        Click on the Add button to Add a product
+      </mat-error>
+      <!-- #endregion -->
+
+      <mat-divider></mat-divider>
+
+      <!-- #region Submit Button -->
+      <mat-card-actions>
+        <div class="submit-button">
+          <button mat-raised-button
+                  [disabled]="isSubmitAndSelectAllButtonDisable()"
+                  color="primary"
+                  matTooltip="Submit Bill"
+                  (click)="onSubmit();">
+            Submit
+          </button>
+        </div>
+      </mat-card-actions>
+      <!-- #endregion -->
+
+    </mat-card>
     <!-- #endregion -->
 
-  </mat-card>
+  </div>
   <!-- #endregion -->
 
 </div>
-<!-- #endregion -->
