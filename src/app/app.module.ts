@@ -24,6 +24,8 @@ import {
   MatAutocompleteModule,
   MatTooltipModule,
   MatBadgeModule,
+  MatExpansionModule,
+  MatStepperModule,
 } from '@angular/material';
 import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -45,10 +47,11 @@ import { CutomerPanelComponent } from './componets/cutomer-panel/cutomer-panel.c
 import { UserPanelComponent } from './componets/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
 import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomerRegistrationComponent } from './componets/customer-registration/customer-registration.component';
 import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.component';
 import { LoginComponent } from './componets/login/login.component';
+import { AuthInterceptor } from './config/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -99,12 +102,18 @@ import { LoginComponent } from './componets/login/login.component';
     ScrollingModule,
     MatBadgeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatExpansionModule,
+    MatStepperModule
   ],
-  providers:  [
+  providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
-    // ...
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmPopupBoxComponent, CustomerRegistrationComponent]
