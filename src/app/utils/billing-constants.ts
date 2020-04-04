@@ -1,5 +1,3 @@
-import { GridConfig } from '../model/grid-config';
-import { TableColumn } from '../model/table-column';
 
 export class BillingConstants {
     public static get ADD_PRODUCT_BUTTON_TOOLTIP(): string { return 'Add Product'; }
