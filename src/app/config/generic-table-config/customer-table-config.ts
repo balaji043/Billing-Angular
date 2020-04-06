@@ -6,15 +6,26 @@ export function CustomerTableConfig(): GridConfig {
     const gridConfig = new GridConfig();
     gridConfig.caption = 'Customer Details';
     gridConfig.uniqueName = 'CUSTOMER_TABLE_CONFIG';
+    gridConfig.isPaginationRequired = true;
+    gridConfig.paginationOptions = [5, 10, 15, 20];
 
     const taleColumns = [];
+
+    const id = new TableColumn();
+    id.accessVariableName = 'id';
+    id.columnDisplayName = 'Name';
+    id.type = 'text';
+
+    id.searchType = 'text';
+
+    // taleColumns.push(id);
 
     const nameColumn = new TableColumn();
     nameColumn.accessVariableName = 'name';
     nameColumn.columnDisplayName = 'Name';
     nameColumn.type = 'text';
-    nameColumn.isSearchFilter = true;
     nameColumn.searchType = 'text';
+
 
     taleColumns.push(nameColumn);
 
@@ -22,7 +33,6 @@ export function CustomerTableConfig(): GridConfig {
     phoneColumn.accessVariableName = 'phoneNumber';
     phoneColumn.columnDisplayName = 'Phone Number';
     phoneColumn.type = 'text';
-    phoneColumn.isSearchFilter = true;
     phoneColumn.searchType = 'text';
 
     taleColumns.push(phoneColumn);
@@ -31,7 +41,6 @@ export function CustomerTableConfig(): GridConfig {
     gstNo.accessVariableName = 'gstNo';
     gstNo.columnDisplayName = 'GST No.';
     gstNo.type = 'text';
-    gstNo.isSearchFilter = true;
     gstNo.searchType = 'text';
 
     taleColumns.push(gstNo);
@@ -40,7 +49,6 @@ export function CustomerTableConfig(): GridConfig {
     streetAddress.accessVariableName = 'street';
     streetAddress.columnDisplayName = 'Street';
     streetAddress.type = 'text';
-    streetAddress.isSearchFilter = true;
     streetAddress.searchType = 'text';
 
     taleColumns.push(streetAddress);
@@ -49,7 +57,6 @@ export function CustomerTableConfig(): GridConfig {
     city.accessVariableName = 'city';
     city.columnDisplayName = 'City';
     city.type = 'text';
-    city.isSearchFilter = true;
     city.searchType = 'text';
 
     taleColumns.push(city);
@@ -58,7 +65,6 @@ export function CustomerTableConfig(): GridConfig {
     state.accessVariableName = 'state';
     state.columnDisplayName = 'State';
     state.type = 'text';
-    state.isSearchFilter = true;
     state.searchType = 'text';
 
     taleColumns.push(state);
@@ -67,7 +73,6 @@ export function CustomerTableConfig(): GridConfig {
     zipCode.accessVariableName = 'zipCode';
     zipCode.columnDisplayName = 'ZIP Code';
     zipCode.type = 'text';
-    zipCode.isSearchFilter = true;
     zipCode.searchType = 'text';
 
     taleColumns.push(zipCode);

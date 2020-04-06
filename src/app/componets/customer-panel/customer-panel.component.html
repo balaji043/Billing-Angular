@@ -1,6 +1,24 @@
 <mat-card>
   <section>
     <mat-card-actions class="action-buttons">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput
+               (keyup)="genericGrid.onSearchOfFilter($event)"
+               placeholder="Ex. ium">
+      </mat-form-field>
+      <mat-radio-group [(ngModel)]="customerSearchRequest.customerType"
+                       (ngModelChange)="makeSearchCustomerCall()">
+        <mat-radio-button value="GST">
+          {{CustomerType.GST}}
+        </mat-radio-button>
+        <mat-radio-button value="NON_GST">
+          {{CustomerType.NON_GST}}
+        </mat-radio-button>
+        <mat-radio-button value="BOTH">
+          {{CustomerType.BOTH}}
+        </mat-radio-button>
+      </mat-radio-group>
       <button mat-raised-button
               color="primary"
               (click)="openCustomerRegistrationDialog();">
@@ -16,20 +34,5 @@
                       [dataSource]='customersList'>
     </app-generic-grid>
   </mat-card-content>
-  <section class="text-right">
-    <mat-card-actions class="action-buttons">
-      <mat-radio-group [(ngModel)]="customerSearchRequest.customerType"
-                       (ngModelChange)="makeSearchCustomerCall()">
-        <mat-radio-button value="GST">
-          {{CustomerType.GST}}
-        </mat-radio-button>
-        <mat-radio-button value="NON_GST">
-          {{CustomerType.NON_GST}}
-        </mat-radio-button>
-        <mat-radio-button value="BOTH">
-          {{CustomerType.BOTH}}
-        </mat-radio-button>
-      </mat-radio-group>
-    </mat-card-actions>
-  </section>
+
 </mat-card>

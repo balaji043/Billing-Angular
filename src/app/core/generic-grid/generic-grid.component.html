@@ -1,44 +1,42 @@
 <div>
 
-  <table class="mat-table"
-         role="grid">
-    <caption class="mat-headline"></caption>
-    <tr class="mat-header-row">
-      <th class="mat-header-cell"
-          *ngFor="let column of gridConfig.columns;let i=index;"
-          id="{{gridConfig.uniqueName}}_TH_{{i}}"
-          role="columnheader">
-        {{column.columnDisplayName}}
-        <div>
-          <mat-form-field *ngIf="column.isSearchFilter && isShowFormField">
-            <input matInput
-                   type="text"
-                   [(ngModel)]="column.searchValue"
-                   (ngModelChange)="onSearchOfFilter(column)">
-            <button mat-button
-                    matSuffix
-                    mat-icon-button
-                    aria-label="Seach"
-                    (click)="onSearchOfFilter(column);">
-              <mat-icon matSuffix>search</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-      </th>
-    </tr>
+  <table mat-table
+         [dataSource]="dataSource"
+         class="mat-elevation-z8"
+         matSort>
 
-    <tbody class="scrollbar scrollbar-primary">
-      <tr class="mat-row"
-          *ngFor="let eachData of dataSource;let j = index">
-        <ng-container *ngFor="let column of gridConfig.columns">
-          <td class="mat-cell"
-              [ngSwitch]="column.type">
-            <ng-container *ngSwitchCase="'text'">
-              {{eachData[column.accessVariableName]}}
-            </ng-container>
-          </td>
-        </ng-container>
-      </tr>
-    </tbody>
+    <caption></caption>
+
+    <ng-container [matColumnDef]="column.accessVariableName"
+                  *ngFor="let column of gridConfig.columns;">
+
+      <th mat-header-cell
+          *matHeaderCellDef
+          scope="col"
+          mat-sort-header>
+        {{column.columnDisplayName}}
+      </th>
+
+      <td mat-cell
+          *matCellDef="let element">
+        <div [ngSwitch]="column.type">
+          <span *ngSwitchCase="'text'">
+            {{element[column.accessVariableName]}}
+          </span>
+        </div>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row
+        *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+
+    <tr mat-row
+        *matRowDef="let row; columns: displayedColumns"></tr>
+
   </table>
+
+  <mat-paginator [hidden]="gridConfig.isPaginationRequired"
+                 [pageSizeOptions]="gridConfig.paginationOptions"></mat-paginator>
+
 </div>

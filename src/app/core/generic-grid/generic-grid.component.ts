@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, HostListener, AfterViewInit, ViewChild } from '@angular/core';
 import { GridConfig } from 'src/app/model/grid-config';
 import { TableColumn } from 'src/app/model/table-column';
 import { UtilityService } from 'src/app/service/utility.service';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-generic-grid',
@@ -11,7 +12,9 @@ import { UtilityService } from 'src/app/service/utility.service';
 export class GenericGridComponent implements OnInit {
 
   @Input() gridConfig: GridConfig;
-  @Input() dataSource: any[];
+  @Input() dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  displayedColumns: string[];
   dSCopy: any[];
   public isShowFormField: boolean;
 
@@ -19,6 +22,10 @@ export class GenericGridComponent implements OnInit {
   constructor(private utilityService: UtilityService) { }
 
   ngOnInit() {
+    this.displayedColumns = [];
+    this.gridConfig.columns.forEach(element => {
+      this.displayedColumns.push(element.accessVariableName);
+    });
     this.onResize(null);
   }
 
@@ -29,18 +36,11 @@ export class GenericGridComponent implements OnInit {
 
   onSearchOfFilter(column: TableColumn): void {
 
-    if (this.utilityService.isNullOrUndefinedOrEmpty(column) || this.utilityService.isNullOrUndefinedOrEmpty(column.searchValue)) {
-      this.dataSource = Array.from(this.dSCopy);
-      return;
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-
-    if (this.utilityService.isNullOrUndefined(this.dSCopy)) {
-      this.dSCopy = Array.from(this.dataSource);
-    }
-
-    this.dataSource = this.dSCopy.filter(e => {
-      return e[column.accessVariableName].toLowerCase().match(column.searchValue.toLowerCase());
-    });
 
   }
 
