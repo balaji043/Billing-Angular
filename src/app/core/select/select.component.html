@@ -1,0 +1,21 @@
+<div class="form-group">
+  <label for="college">College:</label>
+  <select class="form-control"
+          id="college"
+          [(ngModel)]="selectedValue"
+          name="college_name"
+          required>
+    <option value="college">Ajay Kumar Garg Engineering College</option>
+    <option value="others">Others- Please Specify Below</option>
+  </select>
+</div>
+<div class="form-group"
+     *ngIf="selectedValue == 'others'">
+  <label for="name">Enter College Name:</label>
+  <input type="text"
+         class="form-control"
+         id="name"
+         ngModel
+         name="other_college_name"
+         required>
+</div>

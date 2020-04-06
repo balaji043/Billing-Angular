@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/service/shared.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { BillType } from 'src/app/utils/billing-constants';
+import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-new-bill',
@@ -31,6 +32,7 @@ export class NewBillComponent implements OnInit {
     products: this.fb.array([])
   });
   customerList: Customer[];
+  customerName: string;
   /* #endregion */
 
   /* #region  constructor */
@@ -38,7 +40,7 @@ export class NewBillComponent implements OnInit {
     public dialog: MatDialog,
     private billingService: BillingService,
     private fb: FormBuilder,
-    private sharedService: SharedService,
+    private customerService: CustomerService,
     private uService: UtilityService,
     private tokenStorageService: TokenStorageService
   ) {
@@ -47,21 +49,28 @@ export class NewBillComponent implements OnInit {
     this.isCheckAll = false;
     this.checkBoxMatIcon = 'check_box_outline_blank';
     this.onClickOfAddProductButton();
-    this.customerList = this.sharedService.getCustomersList();
     this.isCustomerSelected = false;
+    this.customerName = '';
   }
   /* #endregion */
 
   ngOnInit() { }
 
-  public onCustomerTextChange(value: string): void {
-    if (this.uService.isNullOrUndefinedOrEmpty(value) || value.length < 3) {
+  public onCustomerTextChange(): void {
+    if (this.uService.isNullOrUndefinedOrEmpty(this.customerName) || this.customerName.length < 3) {
       return;
     }
-    this.customerList = this.sharedService.getCustomersList();
+    this.customerService.getCustomerFzzy('%' + this.customerName + '%').subscribe(result => {
+      this.customerList = result;
+    });
   }
 
   public getCustomerNameById(id: number): string {
+
+    if (this.uService.isNullOrUndefined(id) || this.uService.isNullOrUndefined(this.selectedCustomer)) {
+      return '';
+    }
+
     this.selectedCustomer = this.customerList.find(c => id === c.id);
     return this.uService.isNullOrUndefined(this.selectedCustomer)
       || this.uService.isNullOrUndefinedOrEmpty(this.selectedCustomer.name) ?
@@ -144,7 +153,6 @@ export class NewBillComponent implements OnInit {
       this.billForm.get('customerId').markAsTouched();
     } else {
       this.isCustomerSelected = true;
-
     }
   }
 

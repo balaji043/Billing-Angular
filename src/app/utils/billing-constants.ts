@@ -21,3 +21,31 @@ export class MSName {
     public static API_AUTH = 'API-AUTH';
 }
 
+export class UserAPIName {
+    public static SAVE = 'Save';
+    public static UPDATE = 'Update';
+    public static SEARCH = 'Search';
+    public static DELETE = 'Delete';
+}
+
+export class AuthAPIName {
+    public static SIGN_IN = 'SignIn';
+    public static LOGIN = 'Update';
+}
+
+export class BillAPIName {
+    public static SAVE = 'Save';
+    public static UPDATE = 'Update';
+    public static SEARCH = 'Search';
+    public static DELETE = 'Delete';
+}
+
+export class CustomerAPIName {
+
+    public static SAVE = 'Save';
+    public static UPDATE = 'Update';
+    public static SEARCH = 'Search';
+    public static DELETE = 'Delete';
+    public static FUZZY = 'Fuzzy';
+
+}
