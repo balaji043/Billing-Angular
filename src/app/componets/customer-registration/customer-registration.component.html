@@ -8,53 +8,68 @@
       <input matInput
              placeholder="Name"
              formControlName="name"
-             [(ngModel)]="customer.name"
              required>
       <mat-error *ngIf="customerForm.controls['name'].hasError('required')">
-        Description is <strong>required</strong>
+        Name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
              placeholder="Phone Number"
-             formControlName="phone"
-             [(ngModel)]="customer.phone">
+             formControlName="phoneNumber">
+      <mat-error *ngIf="customerForm.controls['phoneNumber'].hasError('required')">
+        Phone Number is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
+    <mat-slide-toggle (change)="onGSTToggle()">
+      GST-Customer
+    </mat-slide-toggle>
     <mat-form-field>
       <input matInput
              placeholder="GST-IN Number"
-             formControlName="gstIn"
-             [(ngModel)]="customer.gstIn">
+             formControlName="gstNo"
+             [appDisableControl]="customerTypeControl.value === 'NON_GST'">
+      <mat-error *ngIf="customerForm.controls['gstNo'].hasError('required')">
+        GST-IN Number is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
              placeholder="Address Line 1"
-             formControlName="streetAddress"
-             [(ngModel)]="customer.streetAddress">
+             formControlName="street">
+      <mat-error *ngIf="customerForm.controls['street'].hasError('required')">
+        Address Line 1 is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
              placeholder="City"
-             formControlName="city"
-             [(ngModel)]="customer.city">
+             formControlName="city">
+      <mat-error *ngIf="customerForm.controls['city'].hasError('required')">
+        City is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
              placeholder="State"
-             formControlName="state"
-             [(ngModel)]="customer.state">
+             formControlName="state">
+      <mat-error *ngIf="customerForm.controls['state'].hasError('required')">
+        State is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput
              placeholder="ZIP Code"
-             formControlName="zipCode"
-             [(ngModel)]="customer.zipCode">
+             formControlName="zipCode">
+      <mat-error *ngIf="customerForm.controls['zipCode'].hasError('required')">
+        ZIP Code is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
   </form>
@@ -63,6 +78,7 @@
   <button mat-button
           [mat-dialog-close]="false">No</button>
   <button mat-button
+          color="primary"
           (click)="onSubmit()"
           cdkFocusInitial>Ok</button>
 </div>

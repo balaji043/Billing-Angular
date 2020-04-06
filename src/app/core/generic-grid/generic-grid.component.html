@@ -1,29 +1,44 @@
 <div>
-  <table class="mat-table" role="grid">
-    <caption class="mat-headline">{{gridConfig.caption}}</caption>
+
+  <table class="mat-table"
+         role="grid">
+    <caption class="mat-headline"></caption>
     <tr class="mat-header-row">
-      <th class="mat-header-cell" *ngFor="let column of gridConfig.columns;let i=index;"
-        id="{{gridConfig.uniqueName}}_TH_{{i}}" role="columnheader">
+      <th class="mat-header-cell"
+          *ngFor="let column of gridConfig.columns;let i=index;"
+          id="{{gridConfig.uniqueName}}_TH_{{i}}"
+          role="columnheader">
         {{column.columnDisplayName}}
         <div>
           <mat-form-field *ngIf="column.isSearchFilter && isShowFormField">
-            <input matInput type="text" [(ngModel)]="column.searchValue" (ngModelChange)="onSearchOfFilter(column)">
-            <button mat-button matSuffix mat-icon-button aria-label="Seach" (click)="onSearchOfFilter(column);">
-              <mat-icon matSuffix >search</mat-icon>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="column.searchValue"
+                   (ngModelChange)="onSearchOfFilter(column)">
+            <button mat-button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Seach"
+                    (click)="onSearchOfFilter(column);">
+              <mat-icon matSuffix>search</mat-icon>
             </button>
           </mat-form-field>
         </div>
       </th>
     </tr>
 
-    <tr class="mat-row" *ngFor="let eachData of dataSource;let j = index">
-      <ng-container *ngFor="let column of gridConfig.columns">
-        <td class="mat-cell" [ngSwitch]="column.type">
-          <ng-container *ngSwitchCase="'text'">
-            {{eachData[column.accessVariableName]}}
-          </ng-container>
-        </td>
-      </ng-container>
-    </tr>
+    <tbody class="scrollbar scrollbar-primary">
+      <tr class="mat-row"
+          *ngFor="let eachData of dataSource;let j = index">
+        <ng-container *ngFor="let column of gridConfig.columns">
+          <td class="mat-cell"
+              [ngSwitch]="column.type">
+            <ng-container *ngSwitchCase="'text'">
+              {{eachData[column.accessVariableName]}}
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
   </table>
 </div>

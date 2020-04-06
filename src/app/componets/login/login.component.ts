@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { MatSnackBar } from '@angular/material';
+import { SharedService } from 'src/app/service/shared.service';
+import { UtilityService } from 'src/app/service/utility.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
-    private snackBar: MatSnackBar) {
+    private sharedService: SharedService,
+    private utilityService: UtilityService) {
+    if (!this.utilityService.isNullOrUndefined(this.tokenStorage.getUser())) {
+      this.isLoginFailed = false;
+      this.isLoggedIn = true;
+      this.reloadPage();
+    }
   }
 
   ngOnInit(): void {
@@ -42,20 +50,19 @@ export class LoginComponent implements OnInit {
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.router.navigateByUrl('');
+          this.sharedService.openMatSnackBar('Welcome ' + data.username + ' !!!');
+          this.reloadPage();
         },
         err => {
           this.isLoginFailed = true;
-          this.snackBar.open(err.message, 'action', {
-            duration: 2000,
-          });
+          this.sharedService.openMatSnackBar(err.message);
         }
       );
     }
   }
 
   reloadPage() {
-    window.location.reload();
+    this.router.navigateByUrl('');
   }
 
 }

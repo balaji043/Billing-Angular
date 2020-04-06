@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostListener, AfterViewInit } from '@angular/core';
 import { GridConfig } from 'src/app/model/grid-config';
 import { TableColumn } from 'src/app/model/table-column';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -19,7 +19,6 @@ export class GenericGridComponent implements OnInit {
   constructor(private utilityService: UtilityService) { }
 
   ngOnInit() {
-    this.dSCopy = Array.from(this.dataSource);
     this.onResize(null);
   }
 
@@ -29,13 +28,20 @@ export class GenericGridComponent implements OnInit {
   }
 
   onSearchOfFilter(column: TableColumn): void {
+
     if (this.utilityService.isNullOrUndefinedOrEmpty(column) || this.utilityService.isNullOrUndefinedOrEmpty(column.searchValue)) {
       this.dataSource = Array.from(this.dSCopy);
       return;
     }
+
+    if (this.utilityService.isNullOrUndefined(this.dSCopy)) {
+      this.dSCopy = Array.from(this.dataSource);
+    }
+
     this.dataSource = this.dSCopy.filter(e => {
       return e[column.accessVariableName].toLowerCase().match(column.searchValue.toLowerCase());
     });
+
   }
 
 }

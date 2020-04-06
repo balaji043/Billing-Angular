@@ -19,7 +19,7 @@ export function CustomerTableConfig(): GridConfig {
     taleColumns.push(nameColumn);
 
     const phoneColumn = new TableColumn();
-    phoneColumn.accessVariableName = 'phone';
+    phoneColumn.accessVariableName = 'phoneNumber';
     phoneColumn.columnDisplayName = 'Phone Number';
     phoneColumn.type = 'text';
     phoneColumn.isSearchFilter = true;
@@ -27,17 +27,17 @@ export function CustomerTableConfig(): GridConfig {
 
     taleColumns.push(phoneColumn);
 
-    const gstIn = new TableColumn();
-    gstIn.accessVariableName = 'gstIn';
-    gstIn.columnDisplayName = 'GST No.';
-    gstIn.type = 'text';
-    gstIn.isSearchFilter = true;
-    gstIn.searchType = 'text';
+    const gstNo = new TableColumn();
+    gstNo.accessVariableName = 'gstNo';
+    gstNo.columnDisplayName = 'GST No.';
+    gstNo.type = 'text';
+    gstNo.isSearchFilter = true;
+    gstNo.searchType = 'text';
 
-    taleColumns.push(gstIn);
+    taleColumns.push(gstNo);
 
     const streetAddress = new TableColumn();
-    streetAddress.accessVariableName = 'streetAddress';
+    streetAddress.accessVariableName = 'street';
     streetAddress.columnDisplayName = 'Street';
     streetAddress.type = 'text';
     streetAddress.isSearchFilter = true;

@@ -26,6 +26,7 @@ import {
   MatBadgeModule,
   MatExpansionModule,
   MatStepperModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -43,7 +44,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { SingleProductComponent } from './componets/single-product/single-product.component';
 import { NewBillComponent } from './componets/new-bill/new-bill.component';
 import { ViewBillComponent } from './componets/view-bill/view-bill.component';
-import { CutomerPanelComponent } from './componets/cutomer-panel/cutomer-panel.component';
+import { CustomerPanelComponent } from './componets/customer-panel/customer-panel.component';
 import { UserPanelComponent } from './componets/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
 import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
@@ -52,6 +53,7 @@ import { CustomerRegistrationComponent } from './componets/customer-registration
 import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.component';
 import { LoginComponent } from './componets/login/login.component';
 import { AuthInterceptor } from './config/auth.interceptor';
+import { DisableControlDirective } from './core/directive/disale-control.directive';
 
 @NgModule({
   declarations: [
@@ -61,11 +63,12 @@ import { AuthInterceptor } from './config/auth.interceptor';
     ViewBillComponent,
     NewBillComponent,
     ConfirmPopupBoxComponent,
-    CutomerPanelComponent,
+    CustomerPanelComponent,
     UserPanelComponent,
     GenericGridComponent,
     CustomerRegistrationComponent,
     LoginComponent,
+    DisableControlDirective
   ],
   imports: [
     BrowserModule,
@@ -104,7 +107,8 @@ import { AuthInterceptor } from './config/auth.interceptor';
     HttpClientModule,
     FormsModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

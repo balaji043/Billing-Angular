@@ -22,7 +22,7 @@ export const ENV_LOCAL = new Environment(
       [
         new EndPoint('Save', ''),
         new EndPoint('Update', ''),
-        new EndPoint('Search', ''),
+        new EndPoint('Search', '/search'),
         new EndPoint('Delete', '')
       ]),
     new MicroService('User-MS', '/user',

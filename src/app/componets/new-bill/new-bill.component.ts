@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Bill } from '../../model/bill.model';
 
 import { MatDialog } from '@angular/material';
 import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm-popup-box.component';
@@ -9,7 +8,7 @@ import { Customer } from 'src/app/model/customer.model';
 import { SharedService } from 'src/app/service/shared.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
-import { BillType } from 'src/app/model/billType.model';
+import { BillType } from 'src/app/utils/billing-constants';
 
 @Component({
   selector: 'app-new-bill',
