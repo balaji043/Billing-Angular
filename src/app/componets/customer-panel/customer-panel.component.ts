@@ -8,6 +8,7 @@ import { CustomerRequest } from 'src/app/model/customer-request';
 import { CustomerService } from 'src/app/service/customer.service';
 import { CustomerType } from 'src/app/utils/billing-constants';
 import { GenericGridComponent } from 'src/app/core/generic-grid/generic-grid.component';
+
 @Component({
   selector: 'app-cutomer-panel',
   templateUrl: './customer-panel.component.html',
@@ -53,4 +54,5 @@ export class CustomerPanelComponent implements OnInit {
       console.error(error);
     });
   }
+
 }

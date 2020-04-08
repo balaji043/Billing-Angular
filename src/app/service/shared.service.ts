@@ -22,7 +22,7 @@ export class SharedService {
   }
 
   public openMatSnackBar(msg: any): void {
-    this.snackBar.open(msg, 'action', {
+    this.snackBar.open(msg, null, {
       duration: 2000,
     });
   }

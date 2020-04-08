@@ -1,31 +1,10 @@
 <div [formGroup]="billForm">
 
   <!-- #region customer select region -->
-  <div *ngIf="!isCustomerSelected">
-    <!-- #region Form Field: Description -->
-    <mat-form-field>
-      <input matInput
-             placeholder="Customer Name"
-             formControlName="customerId"
-             [matAutocomplete]="autoCompleteForCustomerName"
-             required>
-      <mat-error *ngIf="billForm.controls['customerId'].hasError('required')">
-        Customer Name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- #region Form Field: AutoComplete Options -->
-    <mat-autocomplete #autoCompleteForCustomerName="matAutocomplete"
-                      [displayWith]="getCustomerNameById.bind(this)">
-      <mat-option *ngFor="let customer of customerList"
-                  [value]="customer.id">
-        {{ customer.name }}
-      </mat-option>
-    </mat-autocomplete>
-    <!-- #endregion -->
-    <!-- #endregion -->
-    <button mat-button
-            color="primary"
-            (click)="onClickOfCustomerSelect();">Select</button>
+  <div class="webkit-center"
+       *ngIf="!isCustomerSelected">
+    <app-input-dropdown [inputDropDownConfig]="inputDropdownConfig"
+                        (clickOnConfirm)="onSelectConfirmOfCustomer($event)"></app-input-dropdown>
   </div>
   <!-- #endregion -->
 

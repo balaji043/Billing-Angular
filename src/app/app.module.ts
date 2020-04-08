@@ -54,6 +54,7 @@ import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.compo
 import { LoginComponent } from './componets/login/login.component';
 import { AuthInterceptor } from './config/auth.interceptor';
 import { DisableControlDirective } from './core/directive/disale-control.directive';
+import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DisableControlDirective } from './core/directive/disale-control.directi
     GenericGridComponent,
     CustomerRegistrationComponent,
     LoginComponent,
-    DisableControlDirective
+    DisableControlDirective,
+    InputDropdownComponent
   ],
   imports: [
     BrowserModule,

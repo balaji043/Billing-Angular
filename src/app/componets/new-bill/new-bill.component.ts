@@ -5,11 +5,14 @@ import { ConfirmPopupBoxComponent } from 'src/app/core/confirm-popup-box/confirm
 import { BillingService } from 'src/app/service/billing.service';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Customer } from 'src/app/model/customer.model';
-import { SharedService } from 'src/app/service/shared.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { BillType } from 'src/app/utils/billing-constants';
 import { CustomerService } from 'src/app/service/customer.service';
+import { InputDropDownConfig } from 'src/app/model/input-dropdown.model';
+import { CustomerFuzzyConfig } from 'src/app/config/input-drop-down-config/customer-fuzzy-config';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-new-bill',
@@ -27,12 +30,13 @@ export class NewBillComponent implements OnInit {
   billForm = this.fb.group({
     invoiceName: [],
     creationDate: [],
-    userId: [null, Validators.required],
-    customerId: [],
+    user: [null, Validators.required],
+    customer: [null, Validators.required],
     products: this.fb.array([])
   });
   customerList: Customer[];
   customerName: string;
+  inputDropdownConfig: InputDropDownConfig;
   /* #endregion */
 
   /* #region  constructor */
@@ -42,41 +46,22 @@ export class NewBillComponent implements OnInit {
     private fb: FormBuilder,
     private customerService: CustomerService,
     private uService: UtilityService,
-    private tokenStorageService: TokenStorageService
+    private router: Router,
+    private tokenStorageService: TokenStorageService,
+    private sharedService: SharedService
   ) {
-    this.billForm.get('userId').setValue(this.tokenStorageService.getUser().id);
+    this.billForm.get('user').setValue(this.tokenStorageService.getUser());
     this.totalAmount = 0;
     this.isCheckAll = false;
     this.checkBoxMatIcon = 'check_box_outline_blank';
     this.onClickOfAddProductButton();
     this.isCustomerSelected = false;
     this.customerName = '';
+    this.inputDropdownConfig = CustomerFuzzyConfig();
   }
   /* #endregion */
 
   ngOnInit() { }
-
-  public onCustomerTextChange(): void {
-    if (this.uService.isNullOrUndefinedOrEmpty(this.customerName) || this.customerName.length < 3) {
-      return;
-    }
-    this.customerService.getCustomerFzzy('%' + this.customerName + '%').subscribe(result => {
-      this.customerList = result;
-    });
-  }
-
-  public getCustomerNameById(id: number): string {
-
-    if (this.uService.isNullOrUndefined(id) || this.uService.isNullOrUndefined(this.selectedCustomer)) {
-      return '';
-    }
-
-    this.selectedCustomer = this.customerList.find(c => id === c.id);
-    return this.uService.isNullOrUndefined(this.selectedCustomer)
-      || this.uService.isNullOrUndefinedOrEmpty(this.selectedCustomer.name) ?
-      ''
-      : this.selectedCustomer.name;
-  }
 
   /* #region  on click action methods */
 
@@ -134,25 +119,18 @@ export class NewBillComponent implements OnInit {
       bill.products.forEach(product => {
         delete product.checkbox;
       });
+      bill.customer = this.selectedCustomer;
       bill.creationDate = '2020-04-19';
       this.billingService.saveBill(bill)
         .subscribe(
           result => {
-            console.log('saved');
-            console.log(result);
+            this.router.navigateByUrl('view-bill');
+            this.sharedService.openMatSnackBar('Bill Saved Successfully');
           }, error => {
-            console.error(error);
+            this.sharedService.openMatSnackBar(error);
           });
     } else {
       console.log('invalid products');
-    }
-  }
-
-  public onClickOfCustomerSelect(): void {
-    if (this.uService.isNullOrUndefined(this.selectedCustomer)) {
-      this.billForm.get('customerId').markAsTouched();
-    } else {
-      this.isCustomerSelected = true;
     }
   }
 
@@ -162,6 +140,14 @@ export class NewBillComponent implements OnInit {
   public onClickOfIndividualSelectButton() {
     this.isCheckAll = this.getTotalCount !== 0 && this.getTotalCount === this.getSelectedCount;
     this.updateCheckBoxMatIcon();
+  }
+
+  public onSelectConfirmOfCustomer(customer) {
+    this.selectedCustomer = customer;
+    if (!this.uService.isNullOrUndefined(this.selectedCustomer)) {
+      this.isCustomerSelected = true;
+      this.billForm.get('customer').setValue( this.selectedCustomer);
+    }
   }
   /* #endregion */
 

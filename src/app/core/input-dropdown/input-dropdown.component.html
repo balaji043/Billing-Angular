@@ -2,7 +2,7 @@
   <mat-form-field>
     <input matInput
            type="text"
-           [placeholder]="config.displayVariableName"
+           [placeholder]="inputDropDownConfig.placeHolder"
            [(ngModel)]="inputValue"
            (ngModelChange)="changeOnInputTextM()">
     <button mat-icon-button
@@ -17,7 +17,7 @@
             *ngFor="let item of list"
             class="button"
             (click)="onClickOfItem(item)">
-      {{item[config.displayVariableName]}}
+      {{item[inputDropDownConfig.displayVariableName]}}
     </button>
   </ul>
 </div>
