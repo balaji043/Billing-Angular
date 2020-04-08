@@ -1,4 +1,4 @@
-import { TableColumn } from './table-column';
+import { TableColumn } from './table-column.config';
 
 export class GridConfig {
     columns: TableColumn[];

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { CustomerTableConfig } from 'src/app/config/generic-table-config/customer-table-config';
 import { CustomerRegistrationComponent } from '../customer-registration/customer-registration.component';
-import { GridConfig } from 'src/app/model/grid-config';
+import { GridConfig } from 'src/app/model/generic-grid.config';
 import { Customer } from 'src/app/model/customer.model';
 import { CustomerRequest } from 'src/app/model/customer-request';
 import { CustomerService } from 'src/app/service/customer.service';

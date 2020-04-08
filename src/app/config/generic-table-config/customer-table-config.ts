@@ -1,5 +1,5 @@
-import { GridConfig } from 'src/app/model/grid-config';
-import { TableColumn } from 'src/app/model/table-column';
+import { GridConfig } from 'src/app/model/generic-grid.config';
+import { TableColumn } from 'src/app/model/table-column.config';
 
 export function CustomerTableConfig(): GridConfig {
 
@@ -10,15 +10,6 @@ export function CustomerTableConfig(): GridConfig {
     gridConfig.paginationOptions = [5, 10, 15, 20];
 
     const taleColumns = [];
-
-    const id = new TableColumn();
-    id.accessVariableName = 'id';
-    id.columnDisplayName = 'Name';
-    id.type = 'text';
-
-    id.searchType = 'text';
-
-    // taleColumns.push(id);
 
     const nameColumn = new TableColumn();
     nameColumn.accessVariableName = 'name';

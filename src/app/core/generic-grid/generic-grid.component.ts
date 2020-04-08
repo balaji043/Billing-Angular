@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener, AfterViewInit, ViewChild } from '@angular/core';
-import { GridConfig } from 'src/app/model/grid-config';
-import { TableColumn } from 'src/app/model/table-column';
+import { GridConfig } from 'src/app/model/generic-grid.config';
+import { TableColumn } from 'src/app/model/table-column.config';
 import { UtilityService } from 'src/app/service/utility.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
