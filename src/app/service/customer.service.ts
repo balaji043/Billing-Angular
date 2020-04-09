@@ -18,7 +18,7 @@ export class CustomerService {
     return this.apiService.post(this.getUrl(CustomerAPIName.SEARCH), customerSearchRequest);
   }
 
-  public getCustomerFzzy(customerName: string): Observable<Customer[]> {
+  public getCustomerFuzzy(customerName: string): Observable<Customer[]> {
     return this.apiService.post(this.getUrl(CustomerAPIName.FUZZY), customerName);
   }
 

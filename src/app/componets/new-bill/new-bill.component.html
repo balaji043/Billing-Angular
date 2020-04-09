@@ -3,8 +3,28 @@
   <!-- #region customer select region -->
   <div class="webkit-center"
        *ngIf="!isCustomerSelected">
-    <app-input-dropdown [inputDropDownConfig]="inputDropdownConfig"
-                        (clickOnConfirm)="onSelectConfirmOfCustomer($event)"></app-input-dropdown>
+    <mat-form-field class="example-full-width">
+      <input matInput
+             placeholder="Choose a user"
+             [matAutocomplete]="auto"
+             formControlName='customer'>
+             <button mat-icon-button matSuffix (click)="onSelectConfirmOfCustomer()">
+               <mat-icon>done</mat-icon>
+             </button>
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete"
+                      [displayWith]="displayFn">
+      <mat-option *ngIf="isFuzzyLoading"
+                  class="is-loading">
+        <mat-spinner diameter="50"></mat-spinner>
+      </mat-option>
+      <ng-container *ngIf="!isFuzzyLoading">
+        <mat-option *ngFor="let user of customerList"
+                    [value]="user">
+          <span>{{ user.name }}</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
   </div>
   <!-- #endregion -->
 

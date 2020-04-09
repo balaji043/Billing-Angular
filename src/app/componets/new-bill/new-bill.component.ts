@@ -13,6 +13,8 @@ import { InputDropDownConfig } from 'src/app/model/input-dropdown.model';
 import { CustomerFuzzyConfig } from 'src/app/config/input-drop-down-config/customer-fuzzy-config';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/service/shared.service';
+import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-new-bill',
@@ -25,6 +27,7 @@ export class NewBillComponent implements OnInit {
   selectedCustomer: Customer;
   totalAmount: number;
   isCheckAll: boolean;
+  isFuzzyLoading: boolean;
   isCustomerSelected: boolean;
   checkBoxMatIcon: string;
   billForm = this.fb.group({
@@ -48,7 +51,7 @@ export class NewBillComponent implements OnInit {
     private uService: UtilityService,
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
   ) {
     this.billForm.get('user').setValue(this.tokenStorageService.getUser());
     this.totalAmount = 0;
@@ -61,7 +64,9 @@ export class NewBillComponent implements OnInit {
   }
   /* #endregion */
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.initializeForCustomer();
+  }
 
   /* #region  on click action methods */
 
@@ -142,11 +147,13 @@ export class NewBillComponent implements OnInit {
     this.updateCheckBoxMatIcon();
   }
 
-  public onSelectConfirmOfCustomer(customer) {
-    this.selectedCustomer = customer;
-    if (!this.uService.isNullOrUndefined(this.selectedCustomer)) {
+  public onSelectConfirmOfCustomer() {
+    if (this.billForm
+      .get('customer').valid) {
       this.isCustomerSelected = true;
-      this.billForm.get('customer').setValue( this.selectedCustomer);
+      this.selectedCustomer = this.billForm.get('customer').value;
+    } else {
+      this.billForm.get('customer').markAsTouched();
     }
   }
   /* #endregion */
@@ -195,5 +202,30 @@ export class NewBillComponent implements OnInit {
     }
   }
   /* #endregion */
+
+
+  public initializeForCustomer(): void {
+    this.billForm
+      .get('customer')
+      .valueChanges
+      .pipe(
+        debounceTime(300),
+        tap(() => this.isFuzzyLoading = true),
+        switchMap(value => this.customerService.getCustomerFuzzy('%' + value + '%')
+          .pipe(
+            finalize(() => this.isFuzzyLoading = false),
+          )
+        )
+      )
+      .subscribe(customerList => {
+        this.customerList = customerList;
+      });
+  }
+
+  displayFn(user: any) {
+    if (user) {
+      return user.name;
+    }
+  }
 
 }
