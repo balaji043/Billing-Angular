@@ -53,7 +53,7 @@ export class NewBillComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private sharedService: SharedService,
   ) {
-    this.billForm.get('user').setValue(this.tokenStorageService.getUser());
+    this.billForm.get('user').setValue(this.tokenStorageService.getUser().user);
     this.totalAmount = 0;
     this.isCheckAll = false;
     this.checkBoxMatIcon = 'check_box_outline_blank';
