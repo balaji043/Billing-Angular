@@ -5,24 +5,23 @@
         <mat-label>Filter</mat-label>
         <input matInput
                (keyup)="genericGrid.onSearchOfFilter($event)"
-               placeholder="Ex. ium">
+               placeholder="Search">
       </mat-form-field>
       <mat-radio-group [(ngModel)]="customerSearchRequest.customerType"
                        (ngModelChange)="makeSearchCustomerCall()">
-        <mat-radio-button value="GST">
+        <mat-radio-button [value]="CustomerType.GST">
           {{CustomerType.GST}}
         </mat-radio-button>
-        <mat-radio-button value="NON_GST">
+        <mat-radio-button [value]="CustomerType.NON_GST">
           {{CustomerType.NON_GST}}
         </mat-radio-button>
-        <mat-radio-button value="BOTH">
+        <mat-radio-button [value]="CustomerType.BOTH">
           {{CustomerType.BOTH}}
         </mat-radio-button>
       </mat-radio-group>
-      <button mat-raised-button
+      <button mat-mini-fab
               color="primary"
               (click)="openCustomerRegistrationDialog();">
-        Add Customer
         <mat-icon matSuffix>
           add
         </mat-icon>
@@ -31,7 +30,7 @@
   </section>
   <mat-card-content>
     <app-generic-grid [gridConfig]="customerGridConfig"
-                      [dataSource]='customersList'>
+                      [dataSource]='genericMatTabaleDataSource'>
     </app-generic-grid>
   </mat-card-content>
 

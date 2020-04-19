@@ -14,12 +14,13 @@ import { CustomerFuzzyConfig } from 'src/app/config/input-drop-down-config/custo
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/service/shared.service';
 import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-bill',
   templateUrl: './new-bill.component.html',
-  styleUrls: ['./new-bill.component.css']
+  styleUrls: ['./new-bill.component.css'],
+  providers: [DatePipe]
 })
 export class NewBillComponent implements OnInit {
 
@@ -51,7 +52,7 @@ export class NewBillComponent implements OnInit {
     private uService: UtilityService,
     private router: Router,
     private tokenStorageService: TokenStorageService,
-    private sharedService: SharedService,
+    private sharedService: SharedService
   ) {
     this.billForm.get('user').setValue(this.tokenStorageService.getUser().user);
     this.totalAmount = 0;
@@ -65,7 +66,7 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
   ngOnInit() {
-    this.initializeForCustomer();
+    this.initializeForCustomerFuzzySearch();
   }
 
   /* #region  on click action methods */
@@ -125,7 +126,7 @@ export class NewBillComponent implements OnInit {
         delete product.checkbox;
       });
       bill.customer = this.selectedCustomer;
-      bill.creationDate = '2020-04-19';
+      bill.creationDate = this.uService.transformDate(new Date());
       this.billingService.saveBill(bill)
         .subscribe(
           result => {
@@ -204,7 +205,7 @@ export class NewBillComponent implements OnInit {
   /* #endregion */
 
 
-  public initializeForCustomer(): void {
+  public initializeForCustomerFuzzySearch(): void {
     this.billForm
       .get('customer')
       .valueChanges
@@ -222,10 +223,11 @@ export class NewBillComponent implements OnInit {
       });
   }
 
-  displayFn(user: any) {
+  public displayFn(user: any): string {
     if (user) {
       return user.name;
     }
+    return '';
   }
 
 }

@@ -1,40 +1,42 @@
 <div>
 
-  <table mat-table
-         [dataSource]="dataSource"
-         class="mat-elevation-z8"
-         matSort>
+  <div class="container">
+    <table mat-table
+           [dataSource]="dataSource"
+           class="mat-elevation-z8"
+           matSort>
 
-    <caption></caption>
+      <caption></caption>
 
-    <ng-container [matColumnDef]="column.accessVariableName"
-                  *ngFor="let column of gridConfig.columns;">
+      <ng-container [matColumnDef]="column.accessVariableName"
+                    *ngFor="let column of gridConfig.columns;">
 
-      <th mat-header-cell
-          *matHeaderCellDef
-          scope="col"
-          mat-sort-header>
-        {{column.columnDisplayName}}
-      </th>
+        <th mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            mat-sort-header>
+          {{column.columnDisplayName}}
+        </th>
 
-      <td mat-cell
-          *matCellDef="let element">
-        <div [ngSwitch]="column.type">
-          <span *ngSwitchCase="'text'">
-            {{element[column.accessVariableName]}}
-          </span>
-        </div>
-      </td>
+        <td mat-cell
+            *matCellDef="let element">
+          <div [ngSwitch]="column.type">
+            <span *ngSwitchCase="'text'">
+              {{element[column.accessVariableName]}}
+            </span>
+          </div>
+        </td>
 
-    </ng-container>
+      </ng-container>
 
-    <tr mat-header-row
-        *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+      <tr mat-header-row
+          *matHeaderRowDef="displayedColumns;sticky: true"></tr>
 
-    <tr mat-row
-        *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-row
+          *matRowDef="let row; columns: displayedColumns"></tr>
 
-  </table>
+    </table>
+  </div>
 
   <mat-paginator [hidden]="gridConfig.isPaginationRequired"
                  [pageSizeOptions]="gridConfig.paginationOptions"></mat-paginator>

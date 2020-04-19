@@ -5,7 +5,7 @@
        *ngIf="!isCustomerSelected">
     <mat-form-field class="example-full-width">
       <input matInput
-             placeholder="Choose a user"
+             placeholder="Type Customer Name"
              [matAutocomplete]="auto"
              formControlName='customer'>
              <button mat-icon-button matSuffix (click)="onSelectConfirmOfCustomer()">

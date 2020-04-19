@@ -55,6 +55,7 @@ import { LoginComponent } from './componets/login/login.component';
 import { AuthInterceptor } from './config/auth.interceptor';
 import { DisableControlDirective } from './core/directive/disale-control.directive';
 import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.com
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmPopupBoxComponent, CustomerRegistrationComponent]

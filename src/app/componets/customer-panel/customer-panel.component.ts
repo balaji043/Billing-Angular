@@ -16,11 +16,11 @@ import { GenericGridComponent } from 'src/app/core/generic-grid/generic-grid.com
 })
 export class CustomerPanelComponent implements OnInit {
 
+
   @ViewChild(GenericGridComponent, { static: true }) genericGrid: GenericGridComponent;
 
-
   customerGridConfig: GridConfig;
-  customersList: MatTableDataSource<Customer>;
+  genericMatTabaleDataSource: MatTableDataSource<Customer>;
   customerSearchRequest: CustomerRequest;
   public CustomerType = CustomerType;
   constructor(
@@ -31,7 +31,10 @@ export class CustomerPanelComponent implements OnInit {
     this.makeSearchCustomerCall();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.genericMatTabaleDataSource = new MatTableDataSource();
+    this.genericMatTabaleDataSource.paginator = this.genericGrid.paginator;
+  }
 
   public openCustomerRegistrationDialog(): void {
     const dialogRef = this.dialog.open(CustomerRegistrationComponent, {
@@ -48,8 +51,7 @@ export class CustomerPanelComponent implements OnInit {
 
   public makeSearchCustomerCall(): void {
     this.customerService.getCustomers(this.customerSearchRequest).subscribe(result => {
-      this.customersList = new MatTableDataSource(result);
-      this.customersList.paginator = this.genericGrid.paginator;
+      this.genericMatTabaleDataSource.data = result;
     }, error => {
       console.error(error);
     });

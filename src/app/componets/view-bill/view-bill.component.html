@@ -1,2 +1,74 @@
-<app-generic-grid [gridConfig]="billTableConfig"
-                  [(dataSource)]="billList"></app-generic-grid>
+<mat-card>
+  <section>
+    <mat-card-actions [formGroup]="advanceSearchForm"
+                      class="action-buttons">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput
+               (keyup)="genericGrid.onSearchOfFilter($event)"
+               placeholder="Search">
+      </mat-form-field>
+      <!-- #region Customer Select -->
+      <mat-form-field class="example-full-width">
+        <input matInput
+               placeholder="Type Customer Name"
+               [matAutocomplete]="auto"
+               formControlName='customer'>
+      </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete"
+                        [displayWith]="displayFn">
+        <mat-option *ngIf="isFuzzyLoading"
+                    class="is-loading">
+          <mat-spinner diameter="50"></mat-spinner>
+        </mat-option>
+        <ng-container *ngIf="!isFuzzyLoading">
+          <mat-option *ngFor="let user of customerList"
+                      [value]="user">
+            <span>{{ user.name }}</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+      <!-- #endregion -->
+      <mat-form-field>
+        <input matInput
+               [matDatepicker]="startDatePicker"
+               formControlName="startDate"
+               placeholder="Start Date">
+        <mat-datepicker-toggle matSuffix
+                               [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+               [matDatepicker]="endDatePicker"
+               formControlName="endDate"
+               placeholder="End Date">
+        <mat-datepicker-toggle matSuffix
+                               [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-icon-button
+              matSuffix
+              (click)="makeSearchBillsAPICall()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-raised-button
+              matSuffix
+              color="primary"
+              (click)="advanceSearchForm.reset()">
+        Reset
+      </button>
+
+      <button mat-icon-button
+              matSuffix
+              (click)="makeSearchBillsAPICall()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </section>
+  <mat-card-content>
+    <app-generic-grid [gridConfig]="billTableConfig"
+                      [(dataSource)]="billList"></app-generic-grid>
+  </mat-card-content>
+</mat-card>

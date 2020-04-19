@@ -6,6 +6,7 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { MatSnackBar } from '@angular/material';
 import { SharedService } from 'src/app/service/shared.service';
 import { UtilityService } from 'src/app/service/utility.service';
+import { LoginResponse } from 'src/app/model/LoginResponse';
 
 @Component({
   selector: 'app-login',
@@ -44,13 +45,13 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched();
     } else {
       this.authService.login(this.loginForm.value).subscribe(
-        data => {
-          this.tokenStorage.saveToken(data.token);
-          this.tokenStorage.saveUser(data);
+        (loginResponse: LoginResponse) => {
+          this.tokenStorage.saveToken(loginResponse.token);
+          this.tokenStorage.saveUser(loginResponse);
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.sharedService.openMatSnackBar('Welcome ' + data.username + ' !!!');
+          this.sharedService.openMatSnackBar('Welcome ' + loginResponse.user.name + ' !!!');
           this.reloadPage();
         },
         err => {
