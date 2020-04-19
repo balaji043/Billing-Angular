@@ -69,6 +69,8 @@
   </section>
   <mat-card-content>
     <app-generic-grid [gridConfig]="billTableConfig"
-                      [(dataSource)]="billList"></app-generic-grid>
+                      [(dataSource)]="billList"
+                      (clickOfIconButton)="onClickOfEditIconButton($event)"
+                      ></app-generic-grid>
   </mat-card-content>
 </mat-card>

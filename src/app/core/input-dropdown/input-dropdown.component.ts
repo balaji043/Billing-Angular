@@ -1,13 +1,11 @@
 import { Component, OnInit, Input, Output, HostListener, ElementRef } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/service/api.service';
-import { InputDropDownConfig } from 'src/app/model/input-dropdown.model';
 import { EnvironmentService } from 'src/app/service/environment.service';
 
 @Component({
   selector: 'app-input-dropdown',
   templateUrl: './input-dropdown.component.html',
-  styleUrls: ['./input-dropdown.component.css']
 })
 export class InputDropdownComponent implements OnInit {
 
@@ -62,3 +60,24 @@ export class InputDropdownComponent implements OnInit {
   }
 
 }
+
+class InputDropDownConfig {
+
+  placeHolder: string;
+  displayVariableName: string;
+  msName: string;
+  apiName: string;
+  constructor(
+      placeHolder: string,
+      displayVariableName: string,
+      msName: string,
+      apiName: string,
+  ) {
+      this.placeHolder = placeHolder;
+      this.displayVariableName = displayVariableName;
+      this.msName = msName;
+      this.apiName = apiName;
+  }
+
+}
+

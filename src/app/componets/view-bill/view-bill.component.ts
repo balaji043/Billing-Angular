@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EnvironmentService } from 'src/app/service/environment.service';
-import { MSName, CustomerAPIName } from 'src/app/utils/billing-constants';
-import { InputDropDownConfig } from 'src/app/model/input-dropdown.model';
 import { GridConfig } from 'src/app/model/generic-grid.config';
 import { BillTableConfig } from 'src/app/config/generic-table-config/bill-table-config';
 import { MatTableDataSource } from '@angular/material';
@@ -13,7 +10,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { CustomerService } from 'src/app/service/customer.service';
 import { SearchBillRequest } from 'src/app/model/search-bill-request';
-import { DatePipe } from '@angular/common';
 import { UtilityService } from 'src/app/service/utility.service';
 @Component({
   selector: 'app-view-bill',
@@ -91,6 +87,10 @@ export class ViewBillComponent implements OnInit {
     if (user) {
       return user.name;
     }
+  }
+
+  public onClickOfEditIconButton(element): void {
+    console.log(element);
   }
 
 }

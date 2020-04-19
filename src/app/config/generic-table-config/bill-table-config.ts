@@ -54,6 +54,12 @@ export function BillTableConfig(): GridConfig {
 
     taleColumns.push(userName);
 
+    const editIcon = new TableColumn();
+    editIcon.type = 'icon_button';
+    editIcon.icon = 'edit';
+
+    taleColumns.push(editIcon);
+
     gridConfig.columns = taleColumns;
 
     return gridConfig;

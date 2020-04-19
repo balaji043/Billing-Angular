@@ -13,8 +13,7 @@
 
         <th mat-header-cell
             *matHeaderCellDef
-            scope="col"
-            mat-sort-header>
+            scope="col">
           {{column.columnDisplayName}}
         </th>
 
@@ -23,6 +22,14 @@
           <div [ngSwitch]="column.type">
             <span *ngSwitchCase="'text'">
               {{element[column.accessVariableName]}}
+            </span>
+            <span *ngSwitchCase="'icon_button'">
+              <button mat-icon-button
+                      (click)="onClickOfIconButton(element)">
+                <mat-icon>
+                  {{column.icon}}
+                </mat-icon>
+              </button>
             </span>
           </div>
         </td>

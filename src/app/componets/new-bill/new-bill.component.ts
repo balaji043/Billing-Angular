@@ -9,8 +9,6 @@ import { UtilityService } from 'src/app/service/utility.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 import { BillType } from 'src/app/utils/billing-constants';
 import { CustomerService } from 'src/app/service/customer.service';
-import { InputDropDownConfig } from 'src/app/model/input-dropdown.model';
-import { CustomerFuzzyConfig } from 'src/app/config/input-drop-down-config/customer-fuzzy-config';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/service/shared.service';
 import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
@@ -40,7 +38,6 @@ export class NewBillComponent implements OnInit {
   });
   customerList: Customer[];
   customerName: string;
-  inputDropdownConfig: InputDropDownConfig;
   /* #endregion */
 
   /* #region  constructor */
@@ -61,7 +58,6 @@ export class NewBillComponent implements OnInit {
     this.onClickOfAddProductButton();
     this.isCustomerSelected = false;
     this.customerName = '';
-    this.inputDropdownConfig = CustomerFuzzyConfig();
   }
   /* #endregion */
 

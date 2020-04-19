@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostListener, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, HostListener, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { GridConfig } from 'src/app/model/generic-grid.config';
 import { TableColumn } from 'src/app/model/table-column.config';
 import { UtilityService } from 'src/app/service/utility.service';
@@ -13,6 +13,7 @@ export class GenericGridComponent implements OnInit {
 
   @Input() gridConfig: GridConfig;
   @Input() dataSource: MatTableDataSource<any>;
+  @Output() clickOfIconButton = new EventEmitter();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayedColumns: string[];
   dSCopy: any[];
@@ -34,7 +35,7 @@ export class GenericGridComponent implements OnInit {
     this.isShowFormField = window.innerWidth > 1330;
   }
 
-  onSearchOfFilter(column: TableColumn): void {
+  public onSearchOfFilter(column: TableColumn): void {
 
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -43,5 +44,7 @@ export class GenericGridComponent implements OnInit {
     }
 
   }
-
+  public onClickOfIconButton(element: any): void {
+    this.clickOfIconButton.emit(element);
+  }
 }
