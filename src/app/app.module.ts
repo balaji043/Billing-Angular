@@ -41,22 +41,22 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { SingleProductComponent } from './componets/single-product/single-product.component';
-import { BillRegistrationComponent } from './componets/bill-registration/bill-registration.component';
-import { BillPanelComponent } from './componets/bill-panel/bill-panel.component';
-import { CustomerPanelComponent } from './componets/customer-panel/customer-panel.component';
-import { UserPanelComponent } from './componets/user-panel/user-panel.component';
+import { SingleProductComponent } from './components/single-product/single-product.component';
+import { BillRegistrationComponent } from './components/bill-registration/bill-registration.component';
+import { BillPanelComponent } from './components/bill-panel/bill-panel.component';
+import { CustomerPanelComponent } from './components/customer-panel/customer-panel.component';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
 import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomerRegistrationComponent } from './componets/customer-registration/customer-registration.component';
-import { AppMainNavComponent } from './componets/app-main-nav/app-main-nav.component';
-import { LoginComponent } from './componets/login/login.component';
+import { CustomerRegistrationComponent } from './components/customer-registration/customer-registration.component';
+import { AppMainNavComponent } from './components/app-main-nav/app-main-nav.component';
+import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './config/auth.interceptor';
 import { DisableControlDirective } from './core/directive/disale-control.directive';
 import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.component';
 import { DatePipe } from '@angular/common';
-import { UserRegistrationComponent } from './componets/user-registration/user-registration.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 @NgModule({
   declarations: [

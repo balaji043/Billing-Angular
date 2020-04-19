@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BillRegistrationComponent } from './componets/bill-registration/bill-registration.component';
-import { BillPanelComponent } from './componets/bill-panel/bill-panel.component';
-import { UserPanelComponent } from './componets/user-panel/user-panel.component';
-import { CustomerPanelComponent } from './componets/customer-panel/customer-panel.component';
-import { LoginComponent } from './componets/login/login.component';
+import { BillRegistrationComponent } from './components/bill-registration/bill-registration.component';
+import { BillPanelComponent } from './components/bill-panel/bill-panel.component';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { CustomerPanelComponent } from './components/customer-panel/customer-panel.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
