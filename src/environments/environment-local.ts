@@ -8,7 +8,7 @@ import { BillAPIName, CustomerAPIName, UserAPIName, AuthAPIName, MSName } from '
 export const ENV_LOCAL = new Environment(
   'local',
   'http://localhost:8080',
-  '/bs/bam',
+  '/bam/bs',
   false,
   [
     new MicroService(MSName.BILL_MS, '/bill',
