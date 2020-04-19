@@ -42,8 +42,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { SingleProductComponent } from './componets/single-product/single-product.component';
-import { NewBillComponent } from './componets/new-bill/new-bill.component';
-import { ViewBillComponent } from './componets/view-bill/view-bill.component';
+import { BillRegistrationComponent } from './componets/bill-registration/bill-registration.component';
+import { BillPanelComponent } from './componets/bill-panel/bill-panel.component';
 import { CustomerPanelComponent } from './componets/customer-panel/customer-panel.component';
 import { UserPanelComponent } from './componets/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
@@ -63,8 +63,8 @@ import { UserRegistrationComponent } from './componets/user-registration/user-re
     AppComponent,
     AppMainNavComponent,
     SingleProductComponent,
-    ViewBillComponent,
-    NewBillComponent,
+    BillPanelComponent,
+    BillRegistrationComponent,
     ConfirmPopupBoxComponent,
     CustomerPanelComponent,
     UserPanelComponent,

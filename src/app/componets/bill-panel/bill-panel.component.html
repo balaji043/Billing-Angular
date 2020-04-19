@@ -64,13 +64,17 @@
               (click)="makeSearchBillsAPICall()">
         <mat-icon>refresh</mat-icon>
       </button>
+      <button mat-icon-button
+              routerLink="/register-bill"
+              routerLinkActive="active-link">
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-card-actions>
 
   </section>
   <mat-card-content>
     <app-generic-grid [gridConfig]="billTableConfig"
                       [(dataSource)]="billList"
-                      (clickOfIconButton)="onClickOfEditIconButton($event)"
-                      ></app-generic-grid>
+                      (clickOfIconButton)="onClickOfEditIconButton($event)"></app-generic-grid>
   </mat-card-content>
 </mat-card>

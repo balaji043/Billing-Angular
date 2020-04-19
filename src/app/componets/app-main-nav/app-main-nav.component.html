@@ -1,24 +1,19 @@
 <mat-toolbar *ngIf="isLoggedIn"
-             color="primary"
-             class="fixed-header">
+             color="primary">
 
-  <mat-toolbar-row>
-    <mat-icon matPrefix>home</mat-icon>
-    <div class="mr-auto">
+  <mat-toolbar-row class="container">
+    <div>
       <a mat-button
-         routerLink="/view-bill"
-         routerLinkActive="active-link">View Bill</a>
+         routerLink="/bill-panel"
+         routerLinkActive="active-link">Bill panel</a>
       <a mat-button
          routerLink="/customer-panel"
-         routerLinkActive="active-link">Customer Panel</a>
+         routerLinkActive="active-link">Customer panel</a>
       <a mat-button
          routerLink="/user-panel"
-         routerLinkActive="active-link">User Panel</a>
-      <a mat-button
-         routerLink="/new-bill"
-         routerLinkActive="active-link">New Bill</a>
+         routerLinkActive="active-link">User panel</a>
     </div>
-    <div class="ml-auto">
+    <div>
       <a mat-button
          routerLink="/login"
          routerLinkActive="active-link"

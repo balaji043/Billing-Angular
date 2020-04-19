@@ -15,12 +15,12 @@ import { switchMap, debounceTime, tap, finalize } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-new-bill',
-  templateUrl: './new-bill.component.html',
-  styleUrls: ['./new-bill.component.css'],
+  selector: 'app-bill-registration',
+  templateUrl: './bill-registration.component.html',
+  styleUrls: ['./bill-registration.component.css'],
   providers: [DatePipe]
 })
-export class NewBillComponent implements OnInit {
+export class BillRegistrationComponent implements OnInit {
 
   /* #region  variable declaration */
   selectedCustomer: Customer;

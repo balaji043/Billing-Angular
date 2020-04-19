@@ -12,11 +12,11 @@ import { CustomerService } from 'src/app/service/customer.service';
 import { SearchBillRequest } from 'src/app/model/search-bill-request';
 import { UtilityService } from 'src/app/service/utility.service';
 @Component({
-  selector: 'app-view-bill',
-  templateUrl: './view-bill.component.html',
-  styleUrls: ['./view-bill.component.css']
+  selector: 'app-bill-panel',
+  templateUrl: './bill-panel.component.html',
+  styleUrls: ['./bill-panel.component.css']
 })
-export class ViewBillComponent implements OnInit {
+export class BillPanelComponent implements OnInit {
 
   @ViewChild(GenericGridComponent, { static: true }) genericGrid: GenericGridComponent;
 
