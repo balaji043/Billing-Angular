@@ -56,6 +56,7 @@ import { AuthInterceptor } from './config/auth.interceptor';
 import { DisableControlDirective } from './core/directive/disale-control.directive';
 import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.component';
 import { DatePipe } from '@angular/common';
+import { UserRegistrationComponent } from './componets/user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { DatePipe } from '@angular/common';
     CustomerRegistrationComponent,
     LoginComponent,
     DisableControlDirective,
-    InputDropdownComponent
+    InputDropdownComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,
