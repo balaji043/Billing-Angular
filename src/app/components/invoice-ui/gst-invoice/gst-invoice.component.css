@@ -1,4 +1,8 @@
 div {
-    border: 1px;
-    border-color: black;
+  border: 1px;
+  border-color: black;
+}
+
+.left-side {
+   width: 140px;
 }

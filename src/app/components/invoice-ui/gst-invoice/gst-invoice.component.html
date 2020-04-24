@@ -1,39 +1,89 @@
 <!-- #region -->
-<div>
+<div class="container">
   <!-- #region Heading Section -->
   <div class="row">
     <!-- #region Icon -->
-    <div>
+    <div class="col-4">
       {{store.icon}}
     </div>
     <!-- #endregion -->
-    <div>
-      <h5>
+    <div class="col-4">
+      <h6>
         {{store.description}}
-      </h5>
+      </h6>
       <h4>
         {{store.name}}
       </h4>
-      <h6>
+      <p>
         {{store.street}}
-      </h6>
-
-      <h6>
-        {{store.city }}. PH : {{store.phoneNumber}}
-      </h6>
-      <h6>
+      </p>
+      <p>
+        {{store.city }} PH : {{store.phoneNumber}}
+      </p>
+      <p>
         GSTIN : {{store.gstIn}}
-      </h6>
-
+      </p>
     </div>
+    <div class="col-4"></div>
   </div>
   <!-- #endregion -->
   <!-- #region Invoice and Address Details Section -->
-  <div>
+  <div class="row">
+    <!-- #region Invoice Details Section -->
+    <div class="col-6">
+      <!-- #region Invoice -->
+      <div class="row">
+        <div class="left-side"> Invoice </div>
+        <div>: {{bill.invoice}}</div>
+      </div>
+      <!-- #endregion -->
+      <!-- #region Date -->
+      <div class="row">
+        <div class="left-side"> Date </div>
+        <div>: {{bill.date}}</div>
+      </div>
+      <!-- #endregion -->
+      <!-- #region Mode of payment -->
+      <div class="row">
+        <div class="left-side"> Mode Of Payment </div>
+        <div>: Cash/Credit </div>
+      </div>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
+    <!-- #region Address Details Section -->
+    <div class="col-6 p-0">
+      <h6 class="row">Billing Address/Details</h6>
+      <!-- #region Name -->
+      <div class="row">
+        <div class="left-side"> Name </div>
+        <div>: {{bill.customer.name}}</div>
+      </div>
+      <!-- #endregion -->
+      <!-- #region Address -->
+      <div class="row">
+        <div class="left-side"> Address </div>
+        <div class="col-6 p-0">
+          <div>: {{bill.customer.streetAddress}}</div>
+          <div>&nbsp; {{bill.customer.city}}</div>
+          <div>&nbsp; {{bill.customer.state}}</div>
+          <div>&nbsp; {{bill.customer.zipCode}}</div>
+
+        </div>
+      </div>
+      <!-- #endregion -->
+      <!-- #region Gst IN -->
+      <div>
+
+      </div>
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
   </div>
   <!-- #endregion -->
   <!-- #region Product List  Section -->
   <div>
+      <div></div>
   </div>
   <!-- #endregion -->
   <!-- #region Total Amount Section -->
@@ -46,3 +96,24 @@
   <!-- #endregion -->
 </div>
 <!-- #endregion -->
+<!-- <table>
+    <caption>{{gridConfig.caption}}</caption>
+    <thead>
+      <tr class="row" >
+        <th *ngFor="let column of gridConfig.columns;let i=index;" id="{{gridConfig.uniqueName}}_TH_{{i}}">
+          {{column.columnDisplayName}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row" *ngFor="let eachData of dataSource;let i=index;" id="{{gridConfig.uniqueName}}_TR_{{i}}">
+        <div *ngFor="let column of gridConfig.columns;let j=index;" id="{{gridConfig.uniqueName}}_TD_{{j}}">
+          <div [ngSwitch]='column.type'>
+            <td *ngSwitchCase="'text'">
+              {{eachData[column.accessVariableName]}}
+            </td>
+          </div>
+        </div>
+      </tr>
+    </tbody>
+  </table> -->

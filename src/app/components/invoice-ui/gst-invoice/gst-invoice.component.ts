@@ -15,7 +15,7 @@ export class GstInvoiceComponent implements OnInit {
       invoice: 'invoice',
       date: '04/03/1997',
       totalAmount: '123123',
-      customerName: {
+      customer: {
         name: 'Customer Name',
         city: 'City',
         gstIn: '123456789123456',
@@ -91,7 +91,7 @@ class StoreDetails {
 class Bill {
   invoice: string;
   date: string;
-  customerName: Customer;
+  customer: Customer;
   products: Product[];
   totalAmount: string;
   gst12Half: string;
