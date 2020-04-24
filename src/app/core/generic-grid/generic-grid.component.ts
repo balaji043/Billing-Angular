@@ -14,6 +14,8 @@ export class GenericGridComponent implements OnInit {
   @Input() gridConfig: GridConfig;
   @Input() dataSource: MatTableDataSource<any>;
   @Output() clickOfIconButton = new EventEmitter();
+  @Output() clickOfLinkButton = new EventEmitter();
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayedColumns: string[];
   dSCopy: any[];
@@ -44,7 +46,17 @@ export class GenericGridComponent implements OnInit {
     }
 
   }
-  public onClickOfIconButton(element: any): void {
-    this.clickOfIconButton.emit(element);
+  public onClickOfIconButton(column: TableColumn, value: any): void {
+    this.clickOfIconButton.emit({
+      '{key}': column.accessVariableName,
+      '{value}': value
+    });
+  }
+
+  public onClickOfLinknButton(column: TableColumn, value: any): void {
+    this.clickOfLinkButton.emit({
+      '{key}': column.accessVariableName,
+      '{value}': value
+    });
   }
 }

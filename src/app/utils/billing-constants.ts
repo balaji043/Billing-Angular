@@ -3,9 +3,16 @@ export class BillingConstants {
     public static get ADD_PRODUCT_BUTTON_TOOLTIP(): string { return 'Add Product'; }
     public static get DELETE_SELECTED_PRODUCT_BUTTON_TOOLTIP(): string { return 'Delete Selected Product(s)'; }
 }
+
 export class CustomerType {
     public static GST = 'GST';
     public static NON_GST = 'NON_GST';
+    public static BOTH = 'BOTH';
+}
+
+export class UserRole {
+    public static ADMIN = 'ADMIN';
+    public static EMPLOYEE = 'EMPLOYEE';
     public static BOTH = 'BOTH';
 }
 

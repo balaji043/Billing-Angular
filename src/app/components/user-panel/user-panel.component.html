@@ -1,3 +1,30 @@
-<p>
-  user-panel works!
-</p>
+<mat-card>
+  <section>
+    <mat-card-actions class="action-buttons">
+      <mat-radio-group [(ngModel)]="userSearchRequest.userRole"
+                       (ngModelChange)="makeSearchUserCall()">
+        <mat-radio-button [value]="UserRole.ADMIN">
+          {{UserRole.ADMIN}}
+        </mat-radio-button>
+        <mat-radio-button [value]="UserRole.EMPLOYEE">
+          {{UserRole.EMPLOYEE}}
+        </mat-radio-button>
+        <mat-radio-button [value]="UserRole.EMPLOYEE">
+          {{UserRole.BOTH}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <button mat-mini-fab
+              color="primary"
+              (click)="openUserRegistrationDialog();">
+        <mat-icon matSuffix>
+          add
+        </mat-icon>
+      </button>
+    </mat-card-actions>
+  </section>
+  <mat-card-content>
+    <app-generic-grid [gridConfig]="userGridConfig"
+                      [dataSource]='genericMatTabaleDataSource'>
+    </app-generic-grid>
+  </mat-card-content>
+</mat-card>

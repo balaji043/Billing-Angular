@@ -126,6 +126,10 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     DatePipe
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmPopupBoxComponent, CustomerRegistrationComponent]
+  entryComponents: [
+    ConfirmPopupBoxComponent,
+    CustomerRegistrationComponent,
+    UserRegistrationComponent
+  ]
 })
 export class AppModule { }

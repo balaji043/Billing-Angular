@@ -50,11 +50,15 @@ export class CustomerPanelComponent implements OnInit {
   }
 
   public makeSearchCustomerCall(): void {
-    this.customerService.getCustomers(this.customerSearchRequest).subscribe(result => {
-      this.genericMatTabaleDataSource.data = result;
-    }, error => {
-      console.error(error);
-    });
+    this.customerService.getCustomers(this.customerSearchRequest)
+      .subscribe(
+        result => {
+          this.genericMatTabaleDataSource.data = result;
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
 
 }

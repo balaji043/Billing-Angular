@@ -18,7 +18,7 @@ export class EnvironmentService {
     });
   }
 
-  getUrl(msName: string, apiName: string): string {
+  public getUrl(msName: string, apiName: string): string {
     const microService = this.environment.msPoints.find(ms => ms.msName === msName);
     return this.environment.dns + this.environment.baseUrl + microService.basePath
       + microService.endPoints.find(endPoint => endPoint.apiName === apiName).path;

@@ -23,7 +23,7 @@
             </span>
             <span *ngSwitchCase="'icon_button'">
               <button mat-icon-button
-                      (click)="onClickOfIconButton(element)">
+                      (click)="onClickOfIconButton(column, element)">
                 <mat-icon>
                   {{column.icon}}
                 </mat-icon>

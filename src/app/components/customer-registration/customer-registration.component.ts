@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Customer } from 'src/app/model/customer.model';
 import { CustomerService } from 'src/app/service/customer.service';
 import { SharedService } from 'src/app/service/shared.service';
-import { BillType, CustomerType } from 'src/app/utils/billing-constants';
-import { UtilityService } from 'src/app/service/utility.service';
+import { CustomerType } from 'src/app/utils/billing-constants';
 
 @Component({
   selector: 'app-customer-registration',
@@ -32,8 +30,8 @@ export class CustomerRegistrationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private sharedService: SharedService,
-    private uService: UtilityService) {
+    private sharedService: SharedService
+  ) {
     this.customerTypeControl.setValue(CustomerType.NON_GST);
   }
   ngOnInit(): void {

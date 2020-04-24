@@ -55,6 +55,7 @@ export function BillTableConfig(): GridConfig {
     taleColumns.push(userName);
 
     const editIcon = new TableColumn();
+    editIcon.accessVariableName = 'editIconButton';
     editIcon.type = 'icon_button';
     editIcon.icon = 'edit';
 

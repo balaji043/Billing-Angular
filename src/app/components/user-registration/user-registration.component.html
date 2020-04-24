@@ -1,1 +1,55 @@
-<p>user-registration works!</p>
+<h1 mat-dialog-title>Customer Save</h1>
+<div mat-dialog-content>
+  <form class="form"
+        [formGroup]="userForm"
+        (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <input matInput
+             placeholder="Name"
+             formControlName="name"
+             required>
+      <mat-error *ngIf="userForm.controls['name'].hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             placeholder="User Name"
+             formControlName="userName">
+      <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
+        User Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-radio-group formControlName="role">
+      <mat-radio-button [value]="UserRole.ADMIN">
+        {{UserRole.ADMIN}}
+      </mat-radio-button>
+      <mat-radio-button [value]="UserRole.EMPLOYEE">
+        {{UserRole.EMPLOYEE}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field>
+      <input matInput
+             placeholder="Password"
+             formControlName="password"
+             type="password">
+      <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+        password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button
+          [mat-dialog-close]="false">No</button>
+  <button mat-button
+          color="primary"
+          (click)="onSubmit()"
+          cdkFocusInitial>Ok</button>
+</div>

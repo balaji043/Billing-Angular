@@ -25,3 +25,8 @@ body {
 .scroll-viewport {
   height: 400px;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  margin-right: 5px;
+}
