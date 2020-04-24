@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl(URLS.BILL_PANEL);
   }
 
 }

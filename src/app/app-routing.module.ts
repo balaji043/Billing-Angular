@@ -5,6 +5,7 @@ import { BillPanelComponent } from './components/bill-panel/bill-panel.component
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { CustomerPanelComponent } from './components/customer-panel/customer-panel.component';
 import { LoginComponent } from './components/login/login.component';
+import { GstInvoiceComponent } from './components/invoice-ui/gst-invoice/gst-invoice.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'customer-panel', component: CustomerPanelComponent },
   { path: 'user-panel', component: UserPanelComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'app-gst-invoice', component: GstInvoiceComponent }
 ];
 
 @NgModule({

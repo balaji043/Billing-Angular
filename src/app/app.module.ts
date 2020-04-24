@@ -57,6 +57,9 @@ import { DisableControlDirective } from './core/directive/disale-control.directi
 import { InputDropdownComponent } from './core/input-dropdown/input-dropdown.component';
 import { DatePipe } from '@angular/common';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { GstInvoiceComponent } from './components/invoice-ui/gst-invoice/gst-invoice.component';
+import { NonGstInvoiceComponent } from './components/invoice-ui/non-gst-invoice/non-gst-invoice.component';
+import { IGstInvoiceComponent } from './components/invoice-ui/i-gst-invoice/i-gst-invoice.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,10 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
     LoginComponent,
     DisableControlDirective,
     InputDropdownComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    GstInvoiceComponent,
+    NonGstInvoiceComponent,
+    IGstInvoiceComponent
   ],
   imports: [
     BrowserModule,
