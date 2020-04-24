@@ -4,6 +4,13 @@ export class BillingConstants {
     public static get DELETE_SELECTED_PRODUCT_BUTTON_TOOLTIP(): string { return 'Delete Selected Product(s)'; }
 }
 
+export class URLS {
+    public static BILL_PANEL = 'bill-panel';
+    public static CUSTOMER_PANEL = 'customer-panel';
+    public static USER_PANEL = 'user-panel';
+    public static LOGIN = 'login';
+}
+
 export class CustomerType {
     public static GST = 'GST';
     public static NON_GST = 'NON_GST';

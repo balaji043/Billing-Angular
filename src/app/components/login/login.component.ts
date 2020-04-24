@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material';
 import { SharedService } from 'src/app/service/shared.service';
 import { UtilityService } from 'src/app/service/utility.service';
 import { LoginResponse } from 'src/app/model/LoginResponse';
+import { URLS } from 'src/app/utils/billing-constants';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,6 @@ export class LoginComponent implements OnInit {
     userName: [null, Validators.required],
     password: [null, Validators.required]
   });
-  isLoginFailed: boolean;
   isLoggedIn: boolean;
 
   constructor(
@@ -30,9 +30,8 @@ export class LoginComponent implements OnInit {
     private sharedService: SharedService,
     private utilityService: UtilityService) {
     if (!this.utilityService.isNullOrUndefined(this.tokenStorage.getUser())) {
-      this.isLoginFailed = false;
       this.isLoggedIn = true;
-      this.reloadPage();
+      this.router.navigateByUrl(URLS.BILL_PANEL);
     }
   }
 
@@ -47,16 +46,14 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe(
         (loginResponse: LoginResponse) => {
           this.tokenStorage.saveToken(loginResponse.token);
-          this.tokenStorage.saveUser(loginResponse);
+          this.tokenStorage.saveUser(loginResponse.user);
 
-          this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.sharedService.openMatSnackBar('Welcome ' + loginResponse.user.name + ' !!!');
           this.reloadPage();
         },
         err => {
-          this.isLoginFailed = true;
-          this.sharedService.openMatSnackBar(err.message);
+          this.sharedService.openMatSnackBar(err.error.message);
         }
       );
     }

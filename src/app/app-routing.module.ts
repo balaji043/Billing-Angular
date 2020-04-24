@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'customer-panel', component: CustomerPanelComponent },
   { path: 'user-panel', component: UserPanelComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'view-bill', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

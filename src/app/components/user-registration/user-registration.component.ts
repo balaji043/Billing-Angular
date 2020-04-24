@@ -41,7 +41,7 @@ export class UserRegistrationComponent implements OnInit {
   onSubmit(): void {
     if (this.userForm.valid) {
       this.userService.saveUser(this.userForm.value).subscribe(result => {
-        this.sharedService.openMatSnackBar('Customer ' + result.name + ' saved successfully');
+        this.sharedService.openMatSnackBar(result.message);
         this.dialogRef.close(true);
       }, error => {
         this.sharedService.openMatSnackBar('Error occured');

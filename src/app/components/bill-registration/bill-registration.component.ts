@@ -7,7 +7,7 @@ import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Customer } from 'src/app/model/customer.model';
 import { UtilityService } from 'src/app/service/utility.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
-import { BillType } from 'src/app/utils/billing-constants';
+import { BillType, URLS } from 'src/app/utils/billing-constants';
 import { CustomerService } from 'src/app/service/customer.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/service/shared.service';
@@ -51,7 +51,7 @@ export class BillRegistrationComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private sharedService: SharedService
   ) {
-    this.billForm.get('user').setValue(this.tokenStorageService.getUser().user);
+    this.billForm.get('user').setValue(this.tokenStorageService.getUser());
     this.totalAmount = 0;
     this.isCheckAll = false;
     this.checkBoxMatIcon = 'check_box_outline_blank';
@@ -126,7 +126,7 @@ export class BillRegistrationComponent implements OnInit {
       this.billingService.saveBill(bill)
         .subscribe(
           result => {
-            this.router.navigateByUrl('view-bill');
+            this.router.navigateByUrl(URLS.BILL_PANEL);
             this.sharedService.openMatSnackBar('Bill Saved Successfully');
           }, error => {
             this.sharedService.openMatSnackBar(error);
