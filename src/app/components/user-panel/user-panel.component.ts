@@ -6,7 +6,7 @@ import { GridConfig } from 'src/app/model/generic-grid.config';
 import { User } from 'src/app/model/user.model';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { UserTableConfig } from 'src/app/config/generic-table-config/user-table-config';
-import { GenericGridComponent } from 'src/app/core/generic-grid/generic-grid.component';
+import { GenericGridComponent } from 'src/app/core/mat-generic-grid/mat-generic-grid.component';
 import { error } from 'util';
 import { UserRegistrationComponent } from '../user-registration/user-registration.component';
 @Component({

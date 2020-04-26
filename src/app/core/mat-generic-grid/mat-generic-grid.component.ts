@@ -5,9 +5,9 @@ import { UtilityService } from 'src/app/service/utility.service';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
-  selector: 'app-generic-grid',
-  templateUrl: './generic-grid.component.html',
-  styleUrls: ['./generic-grid.component.css']
+  selector: 'app-mat-generic-grid',
+  templateUrl: './mat-generic-grid.component.html',
+  styleUrls: ['./mat-generic-grid.component.css']
 })
 export class GenericGridComponent implements OnInit {
 

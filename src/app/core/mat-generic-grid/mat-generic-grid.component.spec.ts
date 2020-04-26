@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { GenericGridComponent } from './generic-grid.component';
+import { GenericGridComponent } from './mat-generic-grid.component';
 
 describe('GenericGridComponent', () => {
   let component: GenericGridComponent;

@@ -7,7 +7,7 @@ import { Customer } from 'src/app/model/customer.model';
 import { CustomerRequest } from 'src/app/model/customer-request';
 import { CustomerService } from 'src/app/service/customer.service';
 import { CustomerType } from 'src/app/utils/billing-constants';
-import { GenericGridComponent } from 'src/app/core/generic-grid/generic-grid.component';
+import { GenericGridComponent } from 'src/app/core/mat-generic-grid/mat-generic-grid.component';
 
 @Component({
   selector: 'app-cutomer-panel',

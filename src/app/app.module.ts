@@ -47,7 +47,7 @@ import { BillPanelComponent } from './components/bill-panel/bill-panel.component
 import { CustomerPanelComponent } from './components/customer-panel/customer-panel.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { ConfirmPopupBoxComponent } from './core/confirm-popup-box/confirm-popup-box.component';
-import { GenericGridComponent } from './core/generic-grid/generic-grid.component';
+import { GenericGridComponent } from './core/mat-generic-grid/mat-generic-grid.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CustomerRegistrationComponent } from './components/customer-registration/customer-registration.component';
 import { AppMainNavComponent } from './components/app-main-nav/app-main-nav.component';
